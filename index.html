@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanodhya Warnasooriya | Electronic Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark background */
+            background-image: 
+                radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 52% 99%, hsla(355, 98%, 76%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 10% 29%, hsla(256, 96%, 68%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 0.1) 0px, transparent 50%);
+            color: #e5e7eb;
+        }
+
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5); /* Semi-transparent dark gray */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(31, 41, 55, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            color: #9ca3af;
+        }
+
+        .nav-link:hover {
+            color: #f9fafb;
+        }
+
+        .nav-link.active {
+            color: #f9fafb;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background: #3b82f6;
+        }
+        
+        .section-heading {
+             font-size: 0.875rem;
+             line-height: 1.25rem;
+             font-weight: 600;
+             color: #60a5fa; /* A lighter blue */
+             text-transform: uppercase;
+             letter-spacing: 0.05em;
+             margin-bottom: 1.5rem;
+        }
+        
+        .interest-tile {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #93c5fd;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .interest-tile:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #dbeafe;
+        }
+        
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        
+        <div class="md:grid md:grid-cols-12 md:gap-12">
+            
+            <!-- Left Column: Header & Nav -->
+            <header class="md:col-span-4 lg:col-span-3 md:sticky top-0 h-screen py-16 flex flex-col justify-between">
+                <div>
+                    <h1 class="text-4xl font-bold text-white">Vanodhya Warnasooriya</h1>
+                    <h2 class="mt-2 text-lg font-medium text-blue-400">Electronic Engineer - R&D</h2>
+                    <p class="mt-4 text-gray-400">Passionate about advancing knowledge through innovation and research in computer vision, HCI, and embedded systems.</p>
+                    
+                    <nav id="nav-menu" class="hidden md:block mt-12">
+                         <ul class="space-y-3">
+                            <li><a href="#profile" class="nav-link font-semibold">Profile</a></li>
+                            <li><a href="#interests" class="nav-link font-semibold">Research Interests</a></li>
+                            <li><a href="#education" class="nav-link font-semibold">Education</a></li>
+                            <li><a href="#publications" class="nav-link font-semibold">Publications</a></li>
+                            <li><a href="#research" class="nav-link font-semibold">Research Experience</a></li>
+                            <li><a href="#experience" class="nav-link font-semibold">Professional Experience</a></li>
+                            <li><a href="#awards" class="nav-link font-semibold">Awards & Achievements</a></li>
+                            <li><a href="#projects" class="nav-link font-semibold">Projects</a></li>
+                            <li><a href="#skills" class="nav-link font-semibold">Technical Skills</a></li>
+                            <li><a href="#leadership" class="nav-link font-semibold">Leadership</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="flex items-center space-x-4 mt-8">
+                     <a href="https://linkedin.com/in/vanowarna" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                    </a>
+                    <a href="https://github.com/vanowarna" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                    </a>
+                    <a href="mailto:vanowarna@gmail.com" class="text-gray-400 hover:text-white transition duration-300">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </a>
+                </div>
+            </header>
+            
+            <!-- Right Column: Main Content -->
+            <main class="md:col-span-8 lg:col-span-9 space-y-20 pt-16 md:pt-16">
+                
+                <!-- Profile Section -->
+                <section id="profile" class="scroll-mt-24">
+                    <h3 class="section-heading">Profile</h3>
+                    <div class="glass-card p-6">
+                        <p class="text-lg leading-relaxed">
+                            Electrical and Electronic Engineering graduate with a strong academic foundation in Embedded Systems, Communication Systems, and Machine Learning. Passionate about advancing knowledge through innovation and research, with a proven track record of leadership, teamwork, and excellent communication abilities. Skilled at contributing to multidisciplinary research teams.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Research Interests Section -->
+                <section id="interests" class="scroll-mt-24">
+                    <h3 class="section-heading">Research Interests</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="interest-tile">Computer Vision and Graphics</span>
+                        <span class="interest-tile">Audio Engineering and Acoustics</span>
+                        <span class="interest-tile">Human-Computer Interaction (HCI)</span>
+                        <span class="interest-tile">Augmented Reality (AR) and Virtual Reality (VR)</span>
+                        <span class="interest-tile">Embedded Systems and Machine Learning</span>
+                    </div>
+                </section>
+
+                <!-- Education Section -->
+                <section id="education" class="scroll-mt-24">
+                     <h3 class="section-heading">Education</h3>
+                     <div class="space-y-8">
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">B.Sc. Engineering in Electrical and Electronic Engineering</h4>
+                            <p class="text-md text-gray-300">University of Peradeniya, Sri Lanka</p>
+                            <p class="text-sm text-gray-400 mt-1">2018 – 2023</p>
+                            <p class="mt-2 text-gray-300">GPA: 3.35/4.00, Second Class Honours (Upper Division)</p>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">GCE Advanced & Ordinary Levels</h4>
+                            <p class="text-md text-gray-300">Maliyadeva College, Kurunegala, Sri Lanka</p>
+                             <p class="text-sm text-gray-400 mt-1">2010 – 2017</p>
+                             <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                                <li>GCE Advanced Level Examination: 3 A’s, z-score: 2.2366, Island Rank: 141</li>
+                                <li>GCE Ordinary Level Examination: 9 A’s</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Publications Section -->
+                <section id="publications" class="scroll-mt-24">
+                    <h3 class="section-heading">Publications</h3>
+                    <div class="space-y-8">
+                         <div class="glass-card p-6">
+                            <a href="https://doi.org/10.1109/ICC45855.2022.9838477" target="_blank" class="group">
+                                <h4 class="text-xl font-bold text-white group-hover:text-blue-400 transition duration-300">Sum Rate Maximization in STAR-RIS Assisted Full-Duplex Communication Systems</h4>
+                                <p class="text-md text-gray-300 mt-2">P. P. Perera, V. G. Warnasooriya, D. Kudathanthirige, H. A. Suraweera.</p>
+                                <p class="text-sm text-gray-400 mt-1">Published in IEEE ICC 2022. DOI: 10.1109/ICC45855.2022.9838477</p>
+                            </a>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Damage Assessment after Natural Disasters with UAVs: Semantic Feature Extraction using Deep Learning</h4>
+                             <p class="text-md text-gray-300 mt-2">M. M.Viduranga, N. S. Hewawiththi, V. G. Warnasooriya, T. Fernando, H. A. Suraweera, S. Sridharan, C. Fookes.</p>
+                            <p class="text-sm text-gray-400 mt-1">To be submitted to IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Research Experience Section -->
+                <section id="research" class="scroll-mt-24">
+                    <h3 class="section-heading">Research Experience</h3>
+                    <div class="space-y-8">
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Damage Assessment after Natural Disasters with UAVs</h4>
+                            <p class="text-sm text-gray-400 mt-1">2024</p>
+                            <p class="mt-4 text-gray-300">Proposes a novel semantic extractor for identifying critical data in real-time onboard UAVs, reducing data transmission. Techniques included Semantic Segmentation, Deep Learning, and Visual Question Answering.</p>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Identification of Attention Level by Gaze Recognition</h4>
+                            <p class="text-sm text-gray-400 mt-1">2023</p>
+                            <p class="mt-4 text-gray-300">Improved video conferencing by using gaze estimation to calculate attention scores and applying semantic communication with GANs to reduce bandwidth by 80%.</p>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Sum Rate Maximization in STAR-RIS Assisted Full-Duplex Systems</h4>
+                            <p class="text-sm text-gray-400 mt-1">2022</p>
+                            <p class="mt-4 text-gray-300">Investigated sum rate performance by optimizing reflection/transmission coefficients. Proposed low-complexity solutions using successive convex approximation. Techniques included RIS, Full-Duplex Communication, and Convex Optimization.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Experience Section -->
+                <section id="experience" class="scroll-mt-24">
+                    <h3 class="section-heading">Professional Experience</h3>
+                     <div class="space-y-8">
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Co-Founder & Lead Engineer</h4>
+                            <p class="text-md text-gray-300">Resowave (Pvt.) Ltd. [Full-time]</p>
+                            <p class="text-sm text-gray-400 mt-1">Feb 2025 – Present</p>
+                            <p class="mt-4 text-gray-300">Co-founded a startup delivering electromagnetic technology services for industrial and research applications.</p>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Electronic Engineer</h4>
+                            <p class="text-md text-gray-300">Vega Innovations (Pvt.) Ltd. [Full-time]</p>
+                            <p class="text-sm text-gray-400 mt-1">Jan 2024 – Jan 2025</p>
+                            <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                                <li>Developed an anomaly detection model for a facial recognition system using Depth and IR cameras.</li>
+                                <li>Configured RFID antenna systems for electronic toll counter lanes on Sri Lankan highways.</li>
+                                <li>Designed a LoRa-based smart farm sensor network with intelligent control leveraging large language models.</li>
+                                <li>Developed a PV harvest monitoring tool for Vega ETX, Sri Lanka’s first electric three-wheeler.</li>
+                                <li>Designed the communication module for a home automation system using the Openthread protocol.</li>
+                            </ul>
+                        </div>
+                         <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Research Associate (Audio-Visual)</h4>
+                            <p class="text-md text-gray-300">GCRF One Health Poultry Hub [On Contract]</p>
+                            <p class="text-sm text-gray-400 mt-1">Jan 2024 – Mar 2024</p>
+                             <p class="mt-4 text-gray-300">Analyzed audio and video content related to poultry and created a video output as requested by the project team.</p>
+                        </div>
+                         <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Trainee Associate Electronics Engineer</h4>
+                            <p class="text-md text-gray-300">Zone24x7 (Pvt.) Ltd. [Internship]</p>
+                            <p class="text-sm text-gray-400 mt-1">Jan 2022 – May 2022</p>
+                            <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                                <li>Participated in a network Quality of Service (QoS) monitoring project.</li>
+                                <li>Created a testing and monitoring framework using eBPF Technology.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                 <!-- Awards & Achievements Section -->
+                <section id="awards" class="scroll-mt-24">
+                    <h3 class="section-heading">Awards & Achievements</h3>
+                     <div class="glass-card p-6">
+                        <ul class="list-disc list-inside space-y-3 text-gray-300">
+                           <li><b>First Place</b>, Undergraduate Thesis Project Competition, IEEE Signal Processing Society, Sri Lanka Chapter (2023)</li>
+                           <li><b>First Place</b>, IEEE Innovation Nation Sri Lanka (INSL) Central Province Competition (2023)</li>
+                           <li><b>Second Runners-Up</b>, Hack:AI Competition, Team: AlgoPirates (2022)</li>
+                           <li><b>8th Place</b>, International Rover Design Challenge, Mars Society, South Asia (2021)</li>
+                           <li><b>Global Finalist</b>, NASA EO Dashboard Hackathon (2021)</li>
+                           <li><b>Third Runners-Up</b>, Mars Hackathon, Mars Society, South Asia (2020)</li>
+                           <li><b>Top 10</b>, ASTRA Satellite Development Hackathon, SEDS India (2019)</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Projects Section -->
+                <section id="projects" class="scroll-mt-24">
+                    <h3 class="section-heading">Projects</h3>
+                    <div class="space-y-8">
+                        <div class="glass-card p-6">
+                            <h4 class="text-lg font-bold text-white">Smart Garbage Disposal System</h4>
+                            <p class="text-sm text-gray-400 mt-1">2023</p>
+                            <p class="mt-2 text-gray-300">Developed a prototype for a smart garbage disposal system that incentivizes users with rewards for proper garbage disposal.</p>
+                        </div>
+                         <div class="glass-card p-6">
+                            <h4 class="text-lg font-bold text-white">Sendie - Communication Device</h4>
+                            <p class="text-sm text-gray-400 mt-1">2022</p>
+                            <p class="mt-2 text-gray-300">Designed a half-duplex communication system using the ESP-NOW wireless protocol for the Electronic Product Design module.</p>
+                        </div>
+                         <div class="glass-card p-6">
+                            <h4 class="text-lg font-bold text-white">Crop Prediction Model using Weather Data</h4>
+                            <p class="text-sm text-gray-400 mt-1">2021</p>
+                            <p class="mt-2 text-gray-300">Developed a supervised machine learning model for predicting crop yields based on weather data.</p>
+                        </div>
+                         <div class="glass-card p-6">
+                            <h4 class="text-lg font-bold text-white">Development of an ICU Ventilator</h4>
+                            <p class="text-sm text-gray-400 mt-1">2021</p>
+                            <p class="mt-2 text-gray-300">Contributed to the Human-Machine Interface (HMI) design and programmed the control system for an ICU ventilator.</p>
+                        </div>
+                         <div class="glass-card p-6">
+                            <h4 class="text-lg font-bold text-white">Design of a Wireless Oximeter</h4>
+                            <p class="text-sm text-gray-400 mt-1">2021</p>
+                            <p class="mt-2 text-gray-300">Designed a compact and efficient wireless oximeter, recognized under the IEEE Covid Project Grant.</p>
+                        </div>
+                         <div class="glass-card p-6">
+                            <h4 class="text-lg font-bold text-white">High-Altitude Balloon Project (Serendib 1.0 and 2.0)</h4>
+                            <p class="text-sm text-gray-400 mt-1">2020-2021</p>
+                            <p class="mt-2 text-gray-300">Served as the electronic design team lead, payload manager, and ground station control lead (SEDS Sri Lanka).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Technical Skills Section -->
+                <section id="skills" class="scroll-mt-24">
+                    <h3 class="section-heading">Technical Skills</h3>
+                     <div class="glass-card p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                           <div>
+                                <h5 class="font-semibold text-white mb-2">Programming Languages</h5>
+                                <p>Python, C, C++, MATLAB, HTML/CSS/Js</p>
+                           </div>
+                           <div>
+                                <h5 class="font-semibold text-white mb-2">Hardware Platforms</h5>
+                                <p>Jetson Nano/Orin, Raspberry Pi, TI-C2000, ESP32, STM32, Arduino</p>
+                           </div>
+                           <div>
+                                <h5 class="font-semibold text-white mb-2">Design Tools</h5>
+                                <p>KiCAD, Altium, SolidWorks, Adobe Creative Suite</p>
+                           </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Leadership Roles Section -->
+                <section id="leadership" class="scroll-mt-24">
+                    <h3 class="section-heading">Leadership & Activities</h3>
+                    <div class="space-y-8">
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Leadership Roles</h4>
+                            <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                               <li>Member- Advisory Board, SEDS Sri Lanka (2021–Present)</li>
+                               <li>Chairperson, IEEE Student Branch, University of Peradeniya (2022–2023)</li>
+                               <li>Vice Chairperson, IEEE Student Branch, University of Peradeniya (2021–2022)</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-white">Extracurricular Activities</h4>
+                            <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                               <li>Producer of the upcoming TV series titled Last Man</li>
+                               <li>Drone Pilot specializing in Aerial Cinematography</li>
+                               <li>Active Photographer with National and International Awards</li>
+                               <li>Amateur Radio Operator, General Class, Call Sign: 4S6VNO</li>
+                               <li>Tabla Player in University Music Group</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-6">
+                             <h4 class="text-xl font-bold text-white">Voluntary Work</h4>
+                            <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                               <li>Lighting Design for dramas and stage performances.</li>
+                               <li>Photographer, Google Developers Group- Sri Lanka.</li>
+                               <li>Creative Producer, IEEE Sri Lanka Section Congress.</li>
+                               <li>Mathematics Tutor and Student Mentor, Sasnaka Sansada.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="text-center pt-16 pb-8">
+                    <p class="text-gray-500 text-sm">Design inspired by modern web trends. Coded with ❤️ in Sri Lanka.</p>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#nav-menu a');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.3 // 30% of the section must be visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                let activeId = null;
+                 entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Prioritize the section that is most visible
+                        if (!activeId) {
+                            activeId = entry.target.getAttribute('id');
+                        }
+                    }
+                });
+                
+                if (activeId) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${activeId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
