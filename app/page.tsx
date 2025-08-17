@@ -244,7 +244,7 @@ export default function Page() {
               <div className="glass-card p-6">
                 <h4 className="text-xl font-bold text-white">Interests & Activities</h4>
                 <ul className="mt-4 list-disc list-inside space-y-2 text-gray-300">
-                    <li><b>Creative Production:</b> Producer of an upcoming TV series (&quot;Last Man&quot;) and Creative Producer for IEEE Sri Lanka Section Congress.</li>
+                  <li><b>Creative Production:</b> Producer of an upcoming TV series (Last Man) and Creative Producer for IEEE Sri Lanka Section Congress.</li>
                   <li><b>Aerial Cinematography:</b> Licensed drone pilot specializing in dynamic aerial footage.</li>
                   <li><b>Photography:</b> Active photographer with several national and international awards.</li>
                   <li><b>Amateur Radio:</b> General Class operator with call sign 4S6VNO.</li>
