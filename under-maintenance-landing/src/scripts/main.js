@@ -1,34 +1,32 @@
-/* ================================================================
-   VANOWARNA PORTFOLIO — INTERACTIVE TERMINAL
-   ================================================================ */
+/* ===================================================================
+   VANOWARNA — Interactive CV Terminal
+   =================================================================== */
 
-const outputEl  = document.getElementById("output");
-const inputEl   = document.getElementById("command-input");
-const bodyEl    = document.getElementById("terminal-body");
+const outputEl = document.getElementById("output");
+const inputEl = document.getElementById("command-input");
+const bodyEl = document.getElementById("terminal-body");
 const cursorGlow = document.getElementById("cursor-glow");
-const asciiBanner = document.getElementById("ascii-banner");
-const photoCanvas = document.getElementById("photo-canvas");
 
 const history = [];
 let histIdx = -1;
 
-/* ================================================================
-   ASCII ART — "VANOWARNA"
-   ================================================================ */
+/* ---------- cursor-following glow ---------- */
+document.addEventListener("mousemove", (e) => {
+    cursorGlow.style.left = e.clientX + "px";
+    cursorGlow.style.top = e.clientY + "px";
+});
 
-const ASCII_ART = [
-    "██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██████╗ ███╗   ██╗ █████╗ ",
-    "██║   ██║██╔══██╗████╗  ██║██╔═══██╗██║    ██║██╔══██╗██╔══██╗████╗  ██║██╔══██╗",
-    "██║   ██║███████║██╔██╗ ██║██║   ██║██║ █╗ ██║███████║██████╔╝██╔██╗ ██║███████║",
-    "╚██╗ ██╔╝██╔══██║██║╚██╗██║██║   ██║██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██╔══██║",
-    " ╚████╔╝ ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║  ██║",
-    "  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝",
+/* ---------- ASCII banner ---------- */
+const ASCII_BANNER = [
+    " ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██████╗ ███╗   ██╗ █████╗ ",
+    " ██║   ██║██╔══██╗████╗  ██║██╔═══██╗██║    ██║██╔══██╗██╔══██╗████╗  ██║██╔══██╗",
+    " ██║   ██║███████║██╔██╗ ██║██║   ██║██║ █╗ ██║███████║██████╔╝██╔██╗ ██║███████║",
+    " ╚██╗ ██╔╝██╔══██║██║╚██╗██║██║   ██║██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██╔══██║",
+    "  ╚████╔╝ ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║  ██║",
+    "   ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝",
 ];
 
-/* ================================================================
-   CV DATA
-   ================================================================ */
-
+/* ---------- CV DATA ---------- */
 const CV = {
     name: "Vanodhya Warnasooriya",
     title: "M.Eng. Candidate in Electrical Engineering \u2014 Vision, Generative & Interactive Computing",
@@ -114,9 +112,7 @@ const CV = {
             role: "Co-Founder & Lead Engineer",
             org: "Resowave (Pvt.) Ltd.",
             period: "Feb 2025 \u2013 Present",
-            bullets: [
-                "Real-time signal visualization with Python & OpenGL",
-            ],
+            bullets: ["Real-time signal visualization with Python & OpenGL"],
         },
         {
             role: "Electronic Engineer",
@@ -129,7 +125,7 @@ const CV = {
         },
     ],
     skills: {
-        "Programming": "Python, C++, C, MATLAB",
+        Programming: "Python, C++, C, MATLAB",
         "ML & Vision": "PyTorch, TensorFlow, OpenCV, CUDA, TensorRT",
         "Tools & Platforms": "Git, Docker, Conda, Jetson (Nano, Orin), Raspberry Pi, ESP32",
         "Design & Graphics": "KiCAD, Altium, SolidWorks, OpenGL",
@@ -148,29 +144,25 @@ const CV = {
     ],
 };
 
-/* ================================================================
-   COMMANDS
-   ================================================================ */
-
+/* ---------- COMMANDS ---------- */
 const commands = {
-
     help: () => [
         { text: "", cls: "" },
-        { text: "  AVAILABLE COMMANDS", cls: "heading" },
-        { text: "  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500", cls: "dim" },
-        { text: "  about      \u2192 who I am + summary", cls: "" },
-        { text: "  interests  \u2192 research interests", cls: "" },
-        { text: "  edu        \u2192 education history", cls: "" },
-        { text: "  skills     \u2192 technical skills", cls: "" },
-        { text: "  work       \u2192 professional experience", cls: "" },
-        { text: "  research   \u2192 research projects", cls: "" },
-        { text: "  pubs       \u2192 publications & preprints", cls: "" },
-        { text: "  awards     \u2192 honours & achievements", cls: "" },
-        { text: "  leadership \u2192 service & leadership", cls: "" },
-        { text: "  contact    \u2192 email, LinkedIn, GitHub", cls: "" },
-        { text: "  all        \u2192 print full CV", cls: "" },
-        { text: "  clear      \u2192 clear terminal", cls: "" },
-        { text: "", cls: "" },
+        { text: "  COMMANDS", cls: "heading" },
+        { text: "  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500", cls: "dim" },
+        { text: "  about       who I am & summary", cls: "" },
+        { text: "  interests   research interests", cls: "" },
+        { text: "  edu         education history", cls: "" },
+        { text: "  skills      technical skills", cls: "" },
+        { text: "  work        professional experience", cls: "" },
+        { text: "  research    research projects", cls: "" },
+        { text: "  pubs        publications & preprints", cls: "" },
+        { text: "  awards      honours & achievements", cls: "" },
+        { text: "  leadership  service & leadership", cls: "" },
+        { text: "  contact     email / LinkedIn / GitHub", cls: "" },
+        { text: "  all         print full CV", cls: "" },
+        { text: "  clear       clear terminal", cls: "" },
+        { text: "  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500", cls: "dim" },
     ],
 
     about: () => {
@@ -272,10 +264,9 @@ const commands = {
 
     all: () => {
         let lines = [];
-        ["about", "interests", "edu", "skills", "work", "research", "pubs", "awards", "leadership", "contact"].forEach((cmd) => {
-            const result = commands[cmd]();
-            lines = lines.concat(result);
-            lines.push({ text: "  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500", cls: "dim" });
+        ["about","interests","edu","skills","work","research","pubs","awards","leadership","contact"].forEach((cmd) => {
+            lines = lines.concat(commands[cmd]());
+            lines.push({ text: "  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500", cls: "dim" });
         });
         return lines;
     },
@@ -283,13 +274,10 @@ const commands = {
     clear: () => { outputEl.innerHTML = ""; return null; },
 };
 
-/* ================================================================
-   RENDERING
-   ================================================================ */
-
-const addLine = (text, className) => {
+/* ---------- RENDER ---------- */
+const addLine = (text, cls) => {
     const el = document.createElement("div");
-    el.className = "line " + (className || "");
+    el.className = "line " + (cls || "");
     el.textContent = text;
     outputEl.appendChild(el);
 };
@@ -309,204 +297,55 @@ const renderResult = (result) => {
     scrollDown();
 };
 
-/* ================================================================
-   COMMAND EXECUTION
-   ================================================================ */
-
+/* ---------- EXECUTE ---------- */
 const runCommand = (raw) => {
     const trimmed = raw.trim();
     if (!trimmed) return;
-    addLine("visitor@vanowarna $ " + trimmed, "command");
-    const key = trimmed.toLowerCase();
-    const handler = commands[key];
+    addLine("visitor@cv> " + trimmed, "command");
+    const handler = commands[trimmed.toLowerCase()];
     if (!handler) {
-        addLine("command not found: " + trimmed + "  \u2014 type 'help' for options", "muted");
+        addLine("  command not found: " + trimmed + " \u2014 type 'help'", "muted");
         scrollDown();
         return;
     }
     renderResult(handler());
 };
 
-/* ================================================================
-   BOOT SEQUENCE  — types ASCII art then system lines
-   ================================================================ */
-
-const bootSystemLines = [
-    "initializing vanowarna terminal v3.0 ...",
-    "loading CV modules: education, experience, publications ...",
-    "scanning skill vectors ...",
-    "status \u25b6 online",
-    "",
-    "type 'help' to see available commands  \u2014  or click a chip below",
+/* ---------- BOOT SEQUENCE ---------- */
+const bootLines = [
+    { text: "initializing vanowarna terminal v3.0 ...", cls: "dim" },
+    { text: "loading cv modules ...", cls: "dim" },
+    { text: "mounting /cv/education /cv/experience /cv/publications ...", cls: "dim" },
+    { text: "scanning skill vectors ... done", cls: "dim" },
+    { text: "", cls: "" },
 ];
 
-const typeAsciiArt = async () => {
-    for (const line of ASCII_ART) {
-        await new Promise((r) => setTimeout(r, 60));
+const boot = async () => {
+    // ASCII banner typed line by line
+    for (const line of ASCII_BANNER) {
+        await sleep(60);
         addLine(line, "ascii");
     }
+    await sleep(200);
+
+    // Boot messages
+    for (const b of bootLines) {
+        await sleep(140);
+        addLine(b.text, b.cls);
+    }
+
+    addLine("  Welcome. Type 'help' or tap a command below.", "sub");
     scrollDown();
 };
 
-const boot = async () => {
-    await typeAsciiArt();
-    addLine("", "");
-    for (const line of bootSystemLines) {
-        await new Promise((r) => setTimeout(r, 140));
-        addLine(line, line === "" ? "" : "dim");
-    }
-    scrollDown();
-};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/* ================================================================
-   ASCII ART BANNER IN HERO — typed char by char
-   ================================================================ */
-
-const typeHeroBanner = async () => {
-    const full = ASCII_ART.join("\n");
-    let idx = 0;
-    const speed = 2;
-    const tick = () => {
-        const chunk = full.slice(idx, idx + speed);
-        asciiBanner.textContent += chunk;
-        idx += speed;
-        if (idx < full.length) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-};
-
-/* ================================================================
-   PHOTO — draw green-tinted placeholder on canvas
-   ================================================================ */
-
-const drawPhoto = () => {
-    if (!photoCanvas) return;
-    const ctx = photoCanvas.getContext("2d");
-    const w = photoCanvas.width;
-    const h = photoCanvas.height;
-
-    // Dark green background
-    ctx.fillStyle = "#040a06";
-    ctx.fillRect(0, 0, w, h);
-
-    // Grid overlay
-    ctx.strokeStyle = "rgba(51, 255, 51, 0.06)";
-    ctx.lineWidth = 0.5;
-    for (let x = 0; x < w; x += 10) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
-    for (let y = 0; y < h; y += 10) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
-
-    // Silhouette circle
-    ctx.beginPath();
-    ctx.arc(w / 2, h * 0.38, w * 0.22, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(51, 255, 51, 0.08)";
-    ctx.fill();
-    ctx.strokeStyle = "rgba(51, 255, 51, 0.3)";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Body silhouette
-    ctx.beginPath();
-    ctx.ellipse(w / 2, h * 0.88, w * 0.32, h * 0.28, 0, Math.PI, 0, true);
-    ctx.fillStyle = "rgba(51, 255, 51, 0.06)";
-    ctx.fill();
-    ctx.strokeStyle = "rgba(51, 255, 51, 0.2)";
-    ctx.stroke();
-
-    // Crosshair
-    ctx.strokeStyle = "rgba(51, 255, 51, 0.18)";
-    ctx.lineWidth = 0.5;
-    ctx.beginPath(); ctx.moveTo(w/2, 0); ctx.lineTo(w/2, h); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(0, h*0.38); ctx.lineTo(w, h*0.38); ctx.stroke();
-
-    // Text
-    ctx.fillStyle = "rgba(51, 255, 51, 0.35)";
-    ctx.font = "9px 'JetBrains Mono', monospace";
-    ctx.textAlign = "center";
-    ctx.fillText("PHOTO PENDING", w / 2, h - 12);
-
-    // Scanlines
-    for (let y = 0; y < h; y += 3) {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-        ctx.fillRect(0, y, w, 1);
-    }
-};
-
-/* ================================================================
-   CURSOR-FOLLOWING GLOW
-   ================================================================ */
-
-const initCursorGlow = () => {
-    if (!cursorGlow) return;
-    // hide on touch devices
-    if ("ontouchstart" in window) return;
-
-    document.addEventListener("mousemove", (e) => {
-        cursorGlow.style.left = e.clientX + "px";
-        cursorGlow.style.top = e.clientY + "px";
-        if (!cursorGlow.classList.contains("active")) cursorGlow.classList.add("active");
-    });
-
-    document.addEventListener("mouseleave", () => {
-        cursorGlow.classList.remove("active");
-    });
-};
-
-/* ================================================================
-   RANDOM GLITCH EFFECT
-   ================================================================ */
-
-const glitchEl = document.querySelector(".glitch");
-let glitchInterval;
-
-const triggerGlitch = () => {
-    if (!glitchEl) return;
-    // Add intense glitch class
-    glitchEl.style.animationDuration = "0.1s";
-    glitchEl.classList.add("glitching");
-    setTimeout(() => {
-        glitchEl.style.animationDuration = "";
-        glitchEl.classList.remove("glitching");
-    }, 150 + Math.random() * 200);
-};
-
-const startRandomGlitch = () => {
-    const scheduleNext = () => {
-        const delay = 3000 + Math.random() * 8000;
-        glitchInterval = setTimeout(() => {
-            triggerGlitch();
-            // Occasionally double-glitch
-            if (Math.random() > 0.6) {
-                setTimeout(triggerGlitch, 200);
-            }
-            scheduleNext();
-        }, delay);
-    };
-    scheduleNext();
-};
-
-/* Also glitch the scanlines occasionally */
-const glitchScanlines = () => {
-    const scanlines = document.querySelector(".scanlines");
-    if (!scanlines) return;
-    setInterval(() => {
-        if (Math.random() > 0.85) {
-            scanlines.style.opacity = "0.3";
-            setTimeout(() => { scanlines.style.opacity = ""; }, 50 + Math.random() * 100);
-        }
-    }, 2000);
-};
-
-/* ================================================================
-   INPUT HANDLING
-   ================================================================ */
-
+/* ---------- INPUT ---------- */
 inputEl.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         const cmd = inputEl.value;
-        if (cmd.trim()) {
-            history.push(cmd);
-            histIdx = history.length;
-        }
+        history.push(cmd);
+        histIdx = history.length;
         runCommand(cmd);
         inputEl.value = "";
     }
@@ -524,41 +363,33 @@ inputEl.addEventListener("keydown", (e) => {
             inputEl.value = history[histIdx] || "";
         }
     }
-    // Tab completion
-    if (e.key === "Tab") {
-        e.preventDefault();
-        const partial = inputEl.value.trim().toLowerCase();
-        if (!partial) return;
-        const matches = Object.keys(commands).filter((c) => c.startsWith(partial));
-        if (matches.length === 1) inputEl.value = matches[0];
-    }
 });
 
-// Click terminal body to focus input
+/* Click anywhere in terminal body focuses input */
 bodyEl.addEventListener("click", () => inputEl.focus());
 
-// Clickable chips
+/* Clickable chips */
 document.querySelectorAll(".chip").forEach((chip) => {
     chip.addEventListener("click", () => {
-        const cmd = chip.getAttribute("data-cmd") || chip.textContent.trim();
-        runCommand(cmd);
-        inputEl.value = "";
-        inputEl.focus();
+        const cmd = chip.getAttribute("data-cmd");
+        if (cmd) {
+            runCommand(cmd);
+            inputEl.value = "";
+            inputEl.focus();
+        }
     });
 });
 
-/* ================================================================
-   INIT
-   ================================================================ */
-
-const init = async () => {
-    drawPhoto();
-    typeHeroBanner();
-    initCursorGlow();
-    startRandomGlitch();
-    glitchScanlines();
-    await boot();
-    inputEl.focus();
+/* ---------- Random glitch burst ---------- */
+const glitchEl = document.querySelector(".glitch");
+const triggerGlitch = () => {
+    if (!glitchEl) return;
+    glitchEl.classList.add("glitch-active");
+    setTimeout(() => glitchEl.classList.remove("glitch-active"), 200 + Math.random() * 300);
+    setTimeout(triggerGlitch, 3000 + Math.random() * 8000);
 };
+setTimeout(triggerGlitch, 2000);
 
-init();
+/* ---------- GO ---------- */
+boot();
+inputEl.focus();
