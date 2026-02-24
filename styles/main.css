@@ -242,6 +242,10 @@ body{
     font-size:inherit;flex-shrink:0;
 }
 
+.mobile-cursor{
+    display:none;
+}
+
 .input{
     flex:1;min-width:0;
     background:transparent;border:none;
@@ -404,11 +408,23 @@ body{animation:crtFlicker 4s infinite}
     .glitch{letter-spacing:.06em}
     .cursor-glow{display:none}
 
-    /* Show input line but readonly on mobile */
-    .input{pointer-events:none}
+    /* Hide text input, show blinking block cursor */
+    .input{display:none}
+    .mobile-cursor{
+        display:inline-block;
+        width:.55em;height:1.1em;
+        background:var(--accent);
+        vertical-align:text-bottom;
+        animation:blink 1s step-end infinite;
+    }
 
     /* Compact ASCII fits in small screens */
     .line.ascii{font-size:.7rem;line-height:1.2;letter-spacing:-.02em}
+}
+
+@keyframes blink{
+    0%,50%{opacity:1}
+    51%,100%{opacity:0}
 }
 
 @media(hover:none){

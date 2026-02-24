@@ -357,8 +357,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 if (isMobile()) {
     inputEl.setAttribute("readonly", "true");
     inputEl.setAttribute("inputmode", "none");
-    inputEl.placeholder = "tap a command below";
-    inputEl.addEventListener("focus", () => inputEl.blur());
+    inputEl.setAttribute("tabindex", "-1");
+    inputEl.placeholder = "";
 }
 
 /* ---------- INPUT ---------- */
