@@ -166,22 +166,26 @@
         let gW, gH;
 
         function resizeGrain() {
-            /* Render at half res for performance */
-            gW = grainCanvas.width = Math.ceil(window.innerWidth / 2);
-            gH = grainCanvas.height = Math.ceil(window.innerHeight / 2);
+            gW = grainCanvas.width = Math.ceil(window.innerWidth / 3);
+            gH = grainCanvas.height = Math.ceil(window.innerHeight / 3);
         }
         resizeGrain();
         window.addEventListener("resize", resizeGrain);
 
+        let grainFrame = 0;
         function drawGrain() {
+            /* Only update every 3rd frame for perf */
+            grainFrame++;
+            if (grainFrame % 3 !== 0) { requestAnimationFrame(drawGrain); return; }
+
             const imageData = ctx.createImageData(gW, gH);
             const data = imageData.data;
             for (let i = 0; i < data.length; i += 4) {
-                const v = Math.random() * 255;
-                data[i] = v;
+                const v = Math.random() * 40;   /* dark noise, not white */
+                data[i] = v * 0.6;               /* slight green tint */
                 data[i + 1] = v;
-                data[i + 2] = v;
-                data[i + 3] = 255;
+                data[i + 2] = v * 0.4;
+                data[i + 3] = Math.random() < 0.4 ? (Math.random() * 18) : 0; /* sparse, very low alpha */
             }
             ctx.putImageData(imageData, 0, 0);
             requestAnimationFrame(drawGrain);
