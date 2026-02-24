@@ -214,7 +214,7 @@ body{
 .terminal-body::-webkit-scrollbar-track{background:transparent}
 .terminal-body::-webkit-scrollbar-thumb{background:rgba(51,255,51,.2);border-radius:3px}
 
-.output{display:flex;flex-direction:column;gap:4px;flex:1;overflow-y:auto}
+.output{display:flex;flex-direction:column;gap:4px}
 
 /* Lines */
 .line{
@@ -232,9 +232,7 @@ body{
 .input-line{
     display:flex;align-items:center;gap:8px;
     flex-shrink:0;
-    padding-top:10px;
-    border-top:1px solid rgba(51,255,51,.06);
-    margin-top:auto;
+    padding-top:6px;
 }
 
 .prompt{
