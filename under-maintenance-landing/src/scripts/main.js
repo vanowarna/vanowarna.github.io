@@ -388,7 +388,7 @@ const triggerGlitch = () => {
     setTimeout(() => glitchEl.classList.remove("glitch-active"), 200 + Math.random() * 300);
     setTimeout(triggerGlitch, 3000 + Math.random() * 8000);
 };
-setTimeout(triggerGlitch, 2000);
+setTimeout(triggerGlitch, 1000);
 
 /* ---------- GO ---------- */
 boot();
