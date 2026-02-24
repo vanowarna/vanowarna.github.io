@@ -17,7 +17,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* ---------- ASCII banner ---------- */
-const ASCII_BANNER = [
+const ASCII_BANNER_FULL = [
     " ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██████╗ ███╗   ██╗ █████╗ ",
     " ██║   ██║██╔══██╗████╗  ██║██╔═══██╗██║    ██║██╔══██╗██╔══██╗████╗  ██║██╔══██╗",
     " ██║   ██║███████║██╔██╗ ██║██║   ██║██║ █╗ ██║███████║██████╔╝██╔██╗ ██║███████║",
@@ -25,6 +25,15 @@ const ASCII_BANNER = [
     "  ╚████╔╝ ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║  ██║",
     "   ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝",
 ];
+
+const ASCII_BANNER_COMPACT = [
+    "█ █ █▀█ █▀█ █▀█ █ █ █▀█ █▀▄ █▀█ █▀█",
+    "▀▄▀ ███ █ █ █ █ █▄█ ███ ██▀ █ █ ███",
+    " ▀  ▀ ▀ ▀ ▀ ▀▀▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀",
+];
+
+const isMobile = () => window.innerWidth <= 600;
+const ASCII_BANNER = isMobile() ? ASCII_BANNER_COMPACT : ASCII_BANNER_FULL;
 
 /* ---------- CV DATA ---------- */
 const CV = {
@@ -322,7 +331,8 @@ const bootLines = [
 
 const boot = async () => {
     // ASCII banner typed line by line
-    for (const line of ASCII_BANNER) {
+    const banner = isMobile() ? ASCII_BANNER_COMPACT : ASCII_BANNER_FULL;
+    for (const line of banner) {
         await sleep(60);
         addLine(line, "ascii");
     }
@@ -334,11 +344,21 @@ const boot = async () => {
         addLine(b.text, b.cls);
     }
 
-    addLine("  Welcome. Type 'help' or tap a command below.", "sub");
+    const welcomeMsg = isMobile()
+        ? "  Welcome. Tap a command below."
+        : "  Welcome. Type 'help' or tap a command below.";
+    addLine(welcomeMsg, "sub");
     scrollDown();
 };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/* ---------- Mobile: disable keyboard ---------- */
+if (isMobile()) {
+    inputEl.setAttribute("readonly", "true");
+    inputEl.setAttribute("inputmode", "none");
+    inputEl.placeholder = "tap a command below";
+}
 
 /* ---------- INPUT ---------- */
 inputEl.addEventListener("keydown", (e) => {

@@ -400,6 +400,12 @@ body{animation:crtFlicker 4s infinite}
     .chip{flex-shrink:0;padding:6px 14px;font-size:.72rem}
     .glitch{letter-spacing:.06em}
     .cursor-glow{display:none}
+
+    /* Hide typing input on mobile — chip-only interaction */
+    .input-line{display:none}
+
+    /* Compact ASCII fits in small screens */
+    .line.ascii{font-size:.7rem;line-height:1.2;letter-spacing:-.02em}
 }
 
 @media(hover:none){
