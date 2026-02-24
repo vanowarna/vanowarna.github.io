@@ -382,13 +382,25 @@ document.querySelectorAll(".chip").forEach((chip) => {
 
 /* ---------- Random glitch burst ---------- */
 const glitchEl = document.querySelector(".glitch");
+const pageGlitchEl = document.getElementById("page-glitch");
+
 const triggerGlitch = () => {
     if (!glitchEl) return;
     glitchEl.classList.add("glitch-active");
-    setTimeout(() => glitchEl.classList.remove("glitch-active"), 200 + Math.random() * 300);
-    setTimeout(triggerGlitch, 3000 + Math.random() * 8000);
+    setTimeout(() => glitchEl.classList.remove("glitch-active"), 150 + Math.random() * 250);
+    setTimeout(triggerGlitch, 1500 + Math.random() * 4000);
 };
-setTimeout(triggerGlitch, 1000);
+
+/* Page-wide glitch (outside terminal) — runs independently */
+const triggerPageGlitch = () => {
+    if (!pageGlitchEl) return;
+    pageGlitchEl.classList.add("active");
+    setTimeout(() => pageGlitchEl.classList.remove("active"), 120 + Math.random() * 180);
+    setTimeout(triggerPageGlitch, 2000 + Math.random() * 6000);
+};
+
+setTimeout(triggerGlitch, 800);
+setTimeout(triggerPageGlitch, 2000);
 
 /* ---------- GO ---------- */
 boot();
