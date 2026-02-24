@@ -29,6 +29,20 @@ body{
 
 ::selection{background:rgba(51,255,51,.25);color:#fff}
 
+/* ===== Particle & grain canvases ===== */
+#particles-bg{
+    position:fixed;inset:0;z-index:0;
+    pointer-events:none;
+    width:100%;height:100%;
+}
+#film-grain{
+    position:fixed;inset:0;z-index:9997;
+    pointer-events:none;
+    width:100%;height:100%;
+    opacity:.08;
+    mix-blend-mode:screen;
+}
+
 /* ===== Cursor-following glow ===== */
 .cursor-glow{
     position:fixed;width:420px;height:420px;border-radius:50%;
@@ -163,7 +177,11 @@ body{
     border-radius:14px;
     background:var(--terminal-bg);
     border:1px solid var(--terminal-border);
-    box-shadow:var(--shadow),0 0 80px rgba(51,255,51,.04);
+    box-shadow:
+        var(--shadow),
+        0 0 60px rgba(51,255,51,.06),
+        0 0 120px rgba(51,255,51,.03),
+        inset 0 1px 0 rgba(51,255,51,.08);
     overflow:hidden;
     backdrop-filter:blur(4px);
     -webkit-backdrop-filter:blur(4px);
