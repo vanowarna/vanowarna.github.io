@@ -204,9 +204,9 @@ body{
     padding:18px 16px 20px;
     font-size:clamp(.78rem,1.8vw,.9rem);
     color:var(--ink);
-    min-height:300px;max-height:55vh;
+    height:55vh;
     overflow-y:auto;
-    display:flex;flex-direction:column;gap:14px;
+    display:flex;flex-direction:column;
     scrollbar-width:thin;
     scrollbar-color:rgba(51,255,51,.2) transparent;
 }
@@ -214,7 +214,7 @@ body{
 .terminal-body::-webkit-scrollbar-track{background:transparent}
 .terminal-body::-webkit-scrollbar-thumb{background:rgba(51,255,51,.2);border-radius:3px}
 
-.output{display:flex;flex-direction:column;gap:4px}
+.output{display:flex;flex-direction:column;gap:4px;flex:1;overflow-y:auto}
 
 /* Lines */
 .line{
@@ -232,6 +232,9 @@ body{
 .input-line{
     display:flex;align-items:center;gap:8px;
     flex-shrink:0;
+    padding-top:10px;
+    border-top:1px solid rgba(51,255,51,.06);
+    margin-top:auto;
 }
 
 .prompt{
@@ -394,15 +397,15 @@ body{animation:crtFlicker 4s infinite}
 /* ===== Responsive ===== */
 @media(max-width:600px){
     .layout{padding:32px 12px 48px;gap:20px}
-    .terminal-body{min-height:240px;max-height:50vh;padding:14px 12px 16px}
+    .terminal-body{height:50vh;padding:14px 12px 16px}
     .terminal-chrome{padding:10px 12px}
     .terminal-footer{padding:10px 12px 12px;gap:6px;overflow-x:auto;flex-wrap:nowrap}
     .chip{flex-shrink:0;padding:6px 14px;font-size:.72rem}
     .glitch{letter-spacing:.06em}
     .cursor-glow{display:none}
 
-    /* Hide typing input on mobile — chip-only interaction */
-    .input-line{display:none}
+    /* Show input line but readonly on mobile */
+    .input{pointer-events:none}
 
     /* Compact ASCII fits in small screens */
     .line.ascii{font-size:.7rem;line-height:1.2;letter-spacing:-.02em}
