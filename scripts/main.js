@@ -16,24 +16,68 @@ document.addEventListener("mousemove", (e) => {
     cursorGlow.style.top = e.clientY + "px";
 });
 
-/* ---------- ASCII banner ---------- */
-const ASCII_BANNER_FULL = [
-    " ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██████╗ ███╗   ██╗ █████╗ ",
-    " ██║   ██║██╔══██╗████╗  ██║██╔═══██╗██║    ██║██╔══██╗██╔══██╗████╗  ██║██╔══██╗",
-    " ██║   ██║███████║██╔██╗ ██║██║   ██║██║ █╗ ██║███████║██████╔╝██╔██╗ ██║███████║",
-    " ╚██╗ ██╔╝██╔══██║██║╚██╗██║██║   ██║██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██╔══██║",
-    "  ╚████╔╝ ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║  ██║",
-    "   ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝",
+/* ---------- Vintage boot diagnostics ---------- */
+const BOOT_DIAG = [
+    { text: "VANOWARNA BIOS v3.07  —  (C) 2026 Vanodhya Warnasooriya", cls: "heading", delay: 80 },
+    { text: "", cls: "", delay: 40 },
+    { text: "CPU ......... Neural-Core NX-7700  @ 4.2 GHz", cls: "dim", delay: 60 },
+    { text: "FPU ......... IEEE 754 co-processor OK", cls: "dim", delay: 50 },
+    { text: "RAM ......... testing:", cls: "dim", delay: 40, counter: { from: 0, to: 131072, step: 16384, suffix: "K OK", cls: "dim", delay: 35 } },
+    { text: "", cls: "", delay: 30 },
+    { text: "Initializing VRAM ... 8192 MB  [OK]", cls: "dim", delay: 60 },
+    { text: "GPU ......... CUDA 12.4 x 4096 cores  [OK]", cls: "dim", delay: 55 },
+    { text: "TENSOR ...... TensorRT 10.1 accelerator  [OK]", cls: "dim", delay: 55 },
+    { text: "DMA ......... 4 channels active  [OK]", cls: "dim", delay: 45 },
+    { text: "", cls: "", delay: 30 },
+    { text: "Scanning peripheral bus ...", cls: "dim", delay: 70 },
+    { text: "  ├─ /dev/cam0    RGB-D  Sensor    [ONLINE]", cls: "dim", delay: 50 },
+    { text: "  ├─ /dev/imu0    6-axis IMU        [ONLINE]", cls: "dim", delay: 50 },
+    { text: "  ├─ /dev/lora0   LoRa 915 MHz      [STANDBY]", cls: "dim", delay: 50 },
+    { text: "  └─ /dev/tty0    Serial Console     [ACTIVE]", cls: "dim", delay: 50 },
+    { text: "", cls: "", delay: 30 },
+    { text: "Loading kernel modules ...", cls: "dim", delay: 60 },
+    { text: "  cv.vision .............. loaded", cls: "dim", delay: 45 },
+    { text: "  cv.generative .......... loaded", cls: "dim", delay: 45 },
+    { text: "  cv.interaction ......... loaded", cls: "dim", delay: 45 },
+    { text: "  cv.edge_deploy ......... loaded", cls: "dim", delay: 45 },
+    { text: "", cls: "", delay: 30 },
+    { text: "Mounting filesystems ...", cls: "dim", delay: 60 },
+    { text: "  /cv/education .......... [OK]", cls: "dim", delay: 40 },
+    { text: "  /cv/experience ......... [OK]", cls: "dim", delay: 40 },
+    { text: "  /cv/publications ....... [OK]", cls: "dim", delay: 40 },
+    { text: "  /cv/skills ............. [OK]", cls: "dim", delay: 40 },
+    { text: "", cls: "", delay: 30 },
+    { text: "All systems nominal. Terminal ready.", cls: "sub", delay: 80 },
+    { text: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", cls: "dim", delay: 40 },
 ];
 
-const ASCII_BANNER_COMPACT = [
-    "█ █ █▀█ █▀█ █▀█ █ █ █▀█ █▀▄ █▀█ █▀█",
-    "▀▄▀ ███ █ █ █ █ █▄█ ███ ██▀ █ █ ███",
-    " ▀  ▀ ▀ ▀ ▀ ▀▀▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀",
+const BOOT_DIAG_MOBILE = [
+    { text: "VANOWARNA BIOS v3.07", cls: "heading", delay: 80 },
+    { text: "(C) 2026 Vanodhya Warnasooriya", cls: "dim", delay: 50 },
+    { text: "", cls: "", delay: 30 },
+    { text: "CPU .. NX-7700 @ 4.2 GHz", cls: "dim", delay: 50 },
+    { text: "RAM .. 131072K OK", cls: "dim", delay: 50 },
+    { text: "GPU .. CUDA 12.4 x4096  [OK]", cls: "dim", delay: 50 },
+    { text: "VRAM . 8192 MB          [OK]", cls: "dim", delay: 50 },
+    { text: "", cls: "", delay: 30 },
+    { text: "Peripherals:", cls: "dim", delay: 50 },
+    { text: " cam0  RGB-D     [ONLINE]", cls: "dim", delay: 40 },
+    { text: " imu0  6-axis    [ONLINE]", cls: "dim", delay: 40 },
+    { text: " lora0 915MHz    [STANDBY]", cls: "dim", delay: 40 },
+    { text: "", cls: "", delay: 30 },
+    { text: "Loading modules ...", cls: "dim", delay: 50 },
+    { text: " cv.vision ........ ok", cls: "dim", delay: 35 },
+    { text: " cv.generative .... ok", cls: "dim", delay: 35 },
+    { text: " cv.interaction ... ok", cls: "dim", delay: 35 },
+    { text: " cv.edge_deploy ... ok", cls: "dim", delay: 35 },
+    { text: "", cls: "", delay: 30 },
+    { text: "Mounting /cv/* .... [OK]", cls: "dim", delay: 50 },
+    { text: "", cls: "", delay: 20 },
+    { text: "Terminal ready.", cls: "sub", delay: 60 },
+    { text: "━━━━━━━━━━━━━━━━━━━━━━━━━━", cls: "dim", delay: 30 },
 ];
 
 const isMobile = () => window.innerWidth <= 600;
-const ASCII_BANNER = isMobile() ? ASCII_BANNER_COMPACT : ASCII_BANNER_FULL;
 
 /* ---------- CV DATA ---------- */
 const CV = {
@@ -333,29 +377,31 @@ const runCommand = (raw) => {
 };
 
 /* ---------- BOOT SEQUENCE ---------- */
-const bootLines = [
-    { text: "initializing vanowarna terminal v3.0 ...", cls: "dim" },
-    { text: "loading cv modules ...", cls: "dim" },
-    { text: "mounting /cv/education /cv/experience /cv/publications ...", cls: "dim" },
-    { text: "scanning skill vectors ... done", cls: "dim" },
-    { text: "", cls: "" },
-];
+const bootLines = [];
 
 const boot = async () => {
-    // ASCII banner typed line by line
-    const banner = isMobile() ? ASCII_BANNER_COMPACT : ASCII_BANNER_FULL;
-    for (const line of banner) {
-        await sleep(60);
-        addLine(line, "ascii");
-    }
-    await sleep(200);
+    const diag = isMobile() ? BOOT_DIAG_MOBILE : BOOT_DIAG;
 
-    // Boot messages
-    for (const b of bootLines) {
-        await sleep(140);
-        addLine(b.text, b.cls);
+    for (const entry of diag) {
+        /* RAM counter effect (desktop only) */
+        if (entry.counter) {
+            const { from, to, step, suffix, cls: cCls, delay: cDelay } = entry.counter;
+            addLine(entry.text, entry.cls);
+            const counterEl = outputEl.lastChild;
+            for (let v = from; v <= to; v += step) {
+                counterEl.textContent = entry.text + " " + v + suffix;
+                scrollDown();
+                await sleep(cDelay);
+            }
+            continue;
+        }
+
+        await sleep(entry.delay || 50);
+        addLine(entry.text, entry.cls);
+        scrollDown();
     }
 
+    await sleep(150);
     const welcomeMsg = isMobile()
         ? "  Welcome. Tap a command below."
         : "  Welcome. Type 'help' or tap a command below.";
