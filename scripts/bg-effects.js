@@ -166,8 +166,8 @@
         let gW, gH;
 
         function resizeGrain() {
-            gW = grainCanvas.width = Math.ceil(window.innerWidth / 3);
-            gH = grainCanvas.height = Math.ceil(window.innerHeight / 3);
+            gW = grainCanvas.width = Math.ceil(window.innerWidth / 2);
+            gH = grainCanvas.height = Math.ceil(window.innerHeight / 2);
         }
         resizeGrain();
         window.addEventListener("resize", resizeGrain);
@@ -181,11 +181,11 @@
             const imageData = ctx.createImageData(gW, gH);
             const data = imageData.data;
             for (let i = 0; i < data.length; i += 4) {
-                const v = Math.random() * 80;
-                data[i] = v * 0.4;
+                const v = 20 + Math.random() * 100;
+                data[i] = v * 0.35;
                 data[i + 1] = v;
-                data[i + 2] = v * 0.25;
-                data[i + 3] = Math.random() * 55;
+                data[i + 2] = v * 0.2;
+                data[i + 3] = 15 + Math.random() * 70;
             }
             ctx.putImageData(imageData, 0, 0);
             requestAnimationFrame(drawGrain);

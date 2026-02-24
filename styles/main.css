@@ -29,6 +29,18 @@ body{
 
 ::selection{background:rgba(51,255,51,.25);color:#fff}
 
+/* ===== Terminal links ===== */
+.terminal-link{
+    color:var(--accent);text-decoration:none;
+    border-bottom:1px dashed rgba(51,255,51,.35);
+    transition:border-color .2s,text-shadow .2s;
+    cursor:pointer;
+}
+.terminal-link:hover{
+    border-bottom-color:var(--accent);
+    text-shadow:0 0 8px rgba(51,255,51,.5);
+}
+
 /* ===== Particle & grain canvases ===== */
 #particles-bg{
     position:fixed;inset:0;z-index:0;
@@ -39,7 +51,7 @@ body{
     position:fixed;inset:0;z-index:9997;
     pointer-events:none;
     width:100vw;height:100vh;
-    opacity:.12;
+    opacity:.45;
     mix-blend-mode:screen;
 }
 
@@ -75,15 +87,15 @@ body{
 
 .scanlines{
     position:absolute;inset:0;
-    background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.08) 1px,rgba(0,0,0,.08) 2px);
+    background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.15) 1px,rgba(0,0,0,.15) 2px);
     animation:scanMove 8s linear infinite;
 }
 
 .noise{
     position:absolute;inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
     background-size:200px 200px;
-    opacity:.5;
+    opacity:.6;
     animation:noiseShift .15s steps(3) infinite;
 }
 

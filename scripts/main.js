@@ -43,6 +43,7 @@ const CV = {
     email: "vanowarna@gmail.com",
     linkedin: "linkedin.com/in/vanowarna",
     github: "github.com/vanowarna",
+    scholar: "scholar.google.com/citations?user=Ne3ko0AAAAAJ&hl=en",
     summary:
         "I build generative and interactive visual computing systems, " +
         "uniting deep learning, computational imaging, and human-computer " +
@@ -245,7 +246,7 @@ const commands = {
             lines.push({ text: "  [" + p.status + "] " + p.title, cls: "sub" });
             lines.push({ text: "    " + p.venue, cls: "dim" });
             lines.push({ text: "    " + p.note, cls: "" });
-            lines.push({ text: "    \u2192 " + p.link, cls: "dim" });
+            lines.push({ text: "    \u2192 " + p.link, cls: "dim", link: p.link });
             lines.push({ text: "", cls: "" });
         });
         return lines;
@@ -266,9 +267,10 @@ const commands = {
     contact: () => [
         { text: "  Contact", cls: "heading" },
         { text: "", cls: "" },
-        { text: "  \u2709  " + CV.email, cls: "" },
-        { text: "  in " + CV.linkedin, cls: "" },
-        { text: "  \u2302  " + CV.github, cls: "" },
+        { text: "  \u2709  " + CV.email, cls: "", link: "mailto:" + CV.email },
+        { text: "  in " + CV.linkedin, cls: "", link: "https://" + CV.linkedin },
+        { text: "  \u2302  " + CV.github, cls: "", link: "https://" + CV.github },
+        { text: "  \ud83c\udf93 " + "Google Scholar", cls: "", link: "https://" + CV.scholar },
     ],
 
     all: () => {
@@ -284,10 +286,20 @@ const commands = {
 };
 
 /* ---------- RENDER ---------- */
-const addLine = (text, cls) => {
+const addLine = (text, cls, link) => {
     const el = document.createElement("div");
     el.className = "line " + (cls || "");
-    el.textContent = text;
+    if (link) {
+        const a = document.createElement("a");
+        a.href = link;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = text;
+        a.className = "terminal-link";
+        el.appendChild(a);
+    } else {
+        el.textContent = text;
+    }
     outputEl.appendChild(el);
 };
 
@@ -298,7 +310,7 @@ const renderResult = (result) => {
     if (Array.isArray(result)) {
         result.forEach((item) => {
             if (typeof item === "string") addLine(item, "");
-            else addLine(item.text, item.cls || "");
+            else addLine(item.text, item.cls || "", item.link || null);
         });
     } else if (typeof result === "string") {
         addLine(result, "");
