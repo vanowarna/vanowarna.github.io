@@ -447,7 +447,7 @@ body{animation:crtFlicker 4s infinite}
 
 /* ===== Responsive ===== */
 @media(max-width:600px){
-    .layout{padding:12px 12px 64px;gap:10px}
+    .layout{padding:12px 12px 80px;gap:10px}
     .terminal-body{padding:14px 12px 16px}
     .terminal-chrome{padding:10px 12px}
     .terminal-footer{padding:10px 12px 12px;gap:6px;overflow-x:auto;flex-wrap:nowrap}
