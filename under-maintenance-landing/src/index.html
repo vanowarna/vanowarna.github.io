@@ -3,29 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Primary SEO -->
     <title>Vanodhya Warnasooriya — CV Engineer | Computer Vision, Generative AI &amp; Interactive Computing</title>
-    <meta name="description" content="Portfolio of Vanodhya Warnasooriya — M.Eng. candidate specialising in computer vision, vision-language models, generative AI, AR/VR, and edge-device optimisation. Currently under construction.">
+    <meta name="description" content="Portfolio of Vanodhya Warnasooriya — M.Eng. candidate in computer vision, vision-language models, generative AI, AR/VR, and edge-device optimisation.">
     <meta name="keywords" content="Vanodhya Warnasooriya, vanowarna, computer vision, generative AI, vision language models, VLM, AR VR, edge computing, PyTorch, TensorFlow, OpenCV, CUDA, UAV disaster assessment, semantic communication, portfolio">
     <meta name="author" content="Vanodhya Warnasooriya">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://vanowarna.github.io/">
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Vanodhya Warnasooriya — CV Engineer Portfolio (Under Construction)">
+    <meta property="og:title" content="Vanodhya Warnasooriya — CV Engineer Portfolio">
     <meta property="og:description" content="Computer vision &amp; generative-AI engineer building robust real-time systems for human-AI collaboration, scene understanding, and edge deployment.">
     <meta property="og:url" content="https://vanowarna.github.io/">
     <meta property="og:site_name" content="vanowarna.github.io">
     <meta property="og:locale" content="en_US">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Vanodhya Warnasooriya — CV Engineer Portfolio">
-    <meta name="twitter:description" content="Vision, generative &amp; interactive computing. Portfolio under construction — explore the terminal in the meantime.">
-
-    <!-- JSON-LD Structured Data -->
+    <meta name="twitter:description" content="Vision, generative &amp; interactive computing — explore my CV through an interactive terminal.">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -35,78 +27,63 @@
         "email": "vanowarna@gmail.com",
         "jobTitle": "CV Engineer / M.Eng. Candidate in Electrical Engineering",
         "description": "Builds generative and interactive visual computing systems, uniting deep learning, computational imaging, and human-computer interaction.",
-        "sameAs": [
-            "https://www.linkedin.com/in/vanowarna",
-            "https://github.com/vanowarna"
-        ],
+        "sameAs": ["https://www.linkedin.com/in/vanowarna","https://github.com/vanowarna"],
         "alumniOf": [
-            {
-                "@type": "CollegeOrUniversity",
-                "name": "Chulalongkorn University",
-                "url": "https://www.chula.ac.th"
-            },
-            {
-                "@type": "CollegeOrUniversity",
-                "name": "University of Peradeniya",
-                "url": "https://www.pdn.ac.lk"
-            }
+            {"@type":"CollegeOrUniversity","name":"Chulalongkorn University"},
+            {"@type":"CollegeOrUniversity","name":"University of Peradeniya"}
         ],
-        "knowsAbout": [
-            "Computer Vision", "Vision-Language Models", "Generative Models",
-            "AR/VR", "Human-AI Interaction", "Edge Computing",
-            "PyTorch", "TensorFlow", "OpenCV", "CUDA", "TensorRT"
-        ]
+        "knowsAbout": ["Computer Vision","Vision-Language Models","Generative Models","AR/VR","Human-AI Interaction","Edge Computing","PyTorch","TensorFlow","OpenCV","CUDA","TensorRT"]
     }
     </script>
-
-    <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
     <div class="backdrop" aria-hidden="true">
         <div class="glow"></div>
         <div class="grid"></div>
         <div class="scanlines"></div>
+        <div class="noise"></div>
         <div class="orbit"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="vignette"></div>
     </div>
     <main class="layout">
         <header class="hero">
-            <p class="eyebrow">// system notice</p>
-            <h1>CV Engineer Under Construction.</h1>
-            <p class="subhead">Portfolio rebuild in progress — explore my CV through the terminal below.</p>
-            <div class="divider" aria-hidden="true">----</div>
+            <p class="eyebrow">Vanodhya Warnasooriya</p>
+            <h1 class="glitch" data-text="VANOWARNA">VANOWARNA</h1>
+            <p class="subtitle">CV Engineer&ensp;&middot;&ensp;Vision, Generative &amp; Interactive Computing</p>
         </header>
-
         <section class="terminal" aria-label="Interactive terminal">
-            <div class="terminal-header">
-                <div class="dots" aria-hidden="true">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="title">vanowarna@portfolio:~/cv</div>
-                <div class="status">LIVE</div>
+            <div class="terminal-chrome">
+                <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="terminal-title">vanowarna@portfolio:~/cv</div>
+                <div class="badge">LIVE</div>
             </div>
             <div class="terminal-body" id="terminal-body">
                 <div class="output" id="output"></div>
-                <div class="input-line">
-                    <span class="prompt">visitor@cv-engineer</span>
-                    <span class="prompt-symbol">$</span>
-                    <input id="command-input" class="input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
-                    <span class="cursor" aria-hidden="true"></span>
+                <div class="input-line" id="input-line">
+                    <span class="prompt" aria-hidden="true">visitor@cv&gt;</span>
+                    <input id="command-input" class="input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command input" placeholder="type a command...">
                 </div>
             </div>
-            <div class="terminal-footer">
-                <span>Try</span>
-                <span class="chip">help</span>
-                <span class="chip">about</span>
-                <span class="chip">edu</span>
-                <span class="chip">skills</span>
-                <span class="chip">work</span>
-                <span class="chip">pubs</span>
+            <div class="terminal-footer" id="chip-bar">
+                <span class="chip" data-cmd="help">help</span>
+                <span class="chip" data-cmd="about">about</span>
+                <span class="chip" data-cmd="interests">interests</span>
+                <span class="chip" data-cmd="edu">edu</span>
+                <span class="chip" data-cmd="skills">skills</span>
+                <span class="chip" data-cmd="work">work</span>
+                <span class="chip" data-cmd="research">research</span>
+                <span class="chip" data-cmd="pubs">pubs</span>
+                <span class="chip" data-cmd="awards">awards</span>
+                <span class="chip" data-cmd="leadership">leadership</span>
+                <span class="chip" data-cmd="contact">contact</span>
+                <span class="chip" data-cmd="all">all</span>
+                <span class="chip chip--danger" data-cmd="clear">clear</span>
             </div>
         </section>
     </main>

@@ -1,12 +1,32 @@
-const outputEl = document.getElementById("output");
-const inputEl  = document.getElementById("command-input");
-const bodyEl   = document.getElementById("terminal-body");
+/* ================================================================
+   VANOWARNA PORTFOLIO — INTERACTIVE TERMINAL
+   ================================================================ */
+
+const outputEl  = document.getElementById("output");
+const inputEl   = document.getElementById("command-input");
+const bodyEl    = document.getElementById("terminal-body");
+const cursorGlow = document.getElementById("cursor-glow");
+const asciiBanner = document.getElementById("ascii-banner");
+const photoCanvas = document.getElementById("photo-canvas");
 
 const history = [];
 let histIdx = -1;
 
 /* ================================================================
-   CV DATA  —  extracted from Vanodhya Warnasooriya's LaTeX resume
+   ASCII ART — "VANOWARNA"
+   ================================================================ */
+
+const ASCII_ART = [
+    "██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██████╗ ███╗   ██╗ █████╗ ",
+    "██║   ██║██╔══██╗████╗  ██║██╔═══██╗██║    ██║██╔══██╗██╔══██╗████╗  ██║██╔══██╗",
+    "██║   ██║███████║██╔██╗ ██║██║   ██║██║ █╗ ██║███████║██████╔╝██╔██╗ ██║███████║",
+    "╚██╗ ██╔╝██╔══██║██║╚██╗██║██║   ██║██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██╔══██║",
+    " ╚████╔╝ ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║  ██║",
+    "  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝",
+];
+
+/* ================================================================
+   CV DATA
    ================================================================ */
 
 const CV = {
@@ -135,22 +155,22 @@ const CV = {
 const commands = {
 
     help: () => [
-        "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557",
-        "\u2551          AVAILABLE COMMANDS              \u2551",
-        "\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563",
-        "\u2551  about      \u2192 who I am & summary        \u2551",
-        "\u2551  interests  \u2192 research interests         \u2551",
-        "\u2551  edu        \u2192 education history          \u2551",
-        "\u2551  skills     \u2192 technical skills           \u2551",
-        "\u2551  work       \u2192 professional experience    \u2551",
-        "\u2551  research   \u2192 research projects          \u2551",
-        "\u2551  pubs       \u2192 publications & preprints   \u2551",
-        "\u2551  awards     \u2192 honours & achievements     \u2551",
-        "\u2551  leadership \u2192 service & leadership       \u2551",
-        "\u2551  contact    \u2192 email, LinkedIn, GitHub    \u2551",
-        "\u2551  all        \u2192 print full CV              \u2551",
-        "\u2551  clear      \u2192 clear terminal             \u2551",
-        "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d",
+        { text: "", cls: "" },
+        { text: "  AVAILABLE COMMANDS", cls: "heading" },
+        { text: "  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500", cls: "dim" },
+        { text: "  about      \u2192 who I am + summary", cls: "" },
+        { text: "  interests  \u2192 research interests", cls: "" },
+        { text: "  edu        \u2192 education history", cls: "" },
+        { text: "  skills     \u2192 technical skills", cls: "" },
+        { text: "  work       \u2192 professional experience", cls: "" },
+        { text: "  research   \u2192 research projects", cls: "" },
+        { text: "  pubs       \u2192 publications & preprints", cls: "" },
+        { text: "  awards     \u2192 honours & achievements", cls: "" },
+        { text: "  leadership \u2192 service & leadership", cls: "" },
+        { text: "  contact    \u2192 email, LinkedIn, GitHub", cls: "" },
+        { text: "  all        \u2192 print full CV", cls: "" },
+        { text: "  clear      \u2192 clear terminal", cls: "" },
+        { text: "", cls: "" },
     ],
 
     about: () => {
@@ -162,7 +182,7 @@ const commands = {
         const words = CV.summary.split(" ");
         let buf = "  ";
         for (const w of words) {
-            if (buf.length + w.length > 72) { lines.push({ text: buf, cls: "" }); buf = "  "; }
+            if (buf.length + w.length > 68) { lines.push({ text: buf, cls: "" }); buf = "  "; }
             buf += w + " ";
         }
         if (buf.trim()) lines.push({ text: buf, cls: "" });
@@ -264,7 +284,7 @@ const commands = {
 };
 
 /* ================================================================
-   RENDERING HELPERS
+   RENDERING
    ================================================================ */
 
 const addLine = (text, className) => {
@@ -272,22 +292,16 @@ const addLine = (text, className) => {
     el.className = "line " + (className || "");
     el.textContent = text;
     outputEl.appendChild(el);
-    scrollDown();
 };
 
-const scrollDown = () => {
-    bodyEl.scrollTop = bodyEl.scrollHeight;
-};
+const scrollDown = () => { bodyEl.scrollTop = bodyEl.scrollHeight; };
 
 const renderResult = (result) => {
     if (!result) return;
     if (Array.isArray(result)) {
         result.forEach((item) => {
-            if (typeof item === "string") {
-                addLine(item, "");
-            } else {
-                addLine(item.text, item.cls || "");
-            }
+            if (typeof item === "string") addLine(item, "");
+            else addLine(item.text, item.cls || "");
         });
     } else if (typeof result === "string") {
         addLine(result, "");
@@ -302,41 +316,184 @@ const renderResult = (result) => {
 const runCommand = (raw) => {
     const trimmed = raw.trim();
     if (!trimmed) return;
-
-    addLine("visitor@cv-engineer $ " + trimmed, "command");
-
+    addLine("visitor@vanowarna $ " + trimmed, "command");
     const key = trimmed.toLowerCase();
     const handler = commands[key];
-
     if (!handler) {
         addLine("command not found: " + trimmed + "  \u2014 type 'help' for options", "muted");
         scrollDown();
         return;
     }
-
     renderResult(handler());
 };
 
 /* ================================================================
-   BOOT SEQUENCE
+   BOOT SEQUENCE  — types ASCII art then system lines
    ================================================================ */
 
-const bootLines = [
-    "initializing cv-engineer terminal v2.0 ...",
-    "loading r\u00e9sum\u00e9 modules ...",
-    "mounting /cv/education /cv/experience /cv/publications ...",
+const bootSystemLines = [
+    "initializing vanowarna terminal v3.0 ...",
+    "loading CV modules: education, experience, publications ...",
     "scanning skill vectors ...",
-    "status \u25b6 under construction",
+    "status \u25b6 online",
     "",
-    "type 'help' to see available commands",
+    "type 'help' to see available commands  \u2014  or click a chip below",
 ];
 
+const typeAsciiArt = async () => {
+    for (const line of ASCII_ART) {
+        await new Promise((r) => setTimeout(r, 60));
+        addLine(line, "ascii");
+    }
+    scrollDown();
+};
+
 const boot = async () => {
-    for (const line of bootLines) {
-        await new Promise((r) => setTimeout(r, 180));
+    await typeAsciiArt();
+    addLine("", "");
+    for (const line of bootSystemLines) {
+        await new Promise((r) => setTimeout(r, 140));
         addLine(line, line === "" ? "" : "dim");
     }
     scrollDown();
+};
+
+/* ================================================================
+   ASCII ART BANNER IN HERO — typed char by char
+   ================================================================ */
+
+const typeHeroBanner = async () => {
+    const full = ASCII_ART.join("\n");
+    let idx = 0;
+    const speed = 2;
+    const tick = () => {
+        const chunk = full.slice(idx, idx + speed);
+        asciiBanner.textContent += chunk;
+        idx += speed;
+        if (idx < full.length) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+};
+
+/* ================================================================
+   PHOTO — draw green-tinted placeholder on canvas
+   ================================================================ */
+
+const drawPhoto = () => {
+    if (!photoCanvas) return;
+    const ctx = photoCanvas.getContext("2d");
+    const w = photoCanvas.width;
+    const h = photoCanvas.height;
+
+    // Dark green background
+    ctx.fillStyle = "#040a06";
+    ctx.fillRect(0, 0, w, h);
+
+    // Grid overlay
+    ctx.strokeStyle = "rgba(51, 255, 51, 0.06)";
+    ctx.lineWidth = 0.5;
+    for (let x = 0; x < w; x += 10) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for (let y = 0; y < h; y += 10) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+
+    // Silhouette circle
+    ctx.beginPath();
+    ctx.arc(w / 2, h * 0.38, w * 0.22, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(51, 255, 51, 0.08)";
+    ctx.fill();
+    ctx.strokeStyle = "rgba(51, 255, 51, 0.3)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Body silhouette
+    ctx.beginPath();
+    ctx.ellipse(w / 2, h * 0.88, w * 0.32, h * 0.28, 0, Math.PI, 0, true);
+    ctx.fillStyle = "rgba(51, 255, 51, 0.06)";
+    ctx.fill();
+    ctx.strokeStyle = "rgba(51, 255, 51, 0.2)";
+    ctx.stroke();
+
+    // Crosshair
+    ctx.strokeStyle = "rgba(51, 255, 51, 0.18)";
+    ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(w/2, 0); ctx.lineTo(w/2, h); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, h*0.38); ctx.lineTo(w, h*0.38); ctx.stroke();
+
+    // Text
+    ctx.fillStyle = "rgba(51, 255, 51, 0.35)";
+    ctx.font = "9px 'JetBrains Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("PHOTO PENDING", w / 2, h - 12);
+
+    // Scanlines
+    for (let y = 0; y < h; y += 3) {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+        ctx.fillRect(0, y, w, 1);
+    }
+};
+
+/* ================================================================
+   CURSOR-FOLLOWING GLOW
+   ================================================================ */
+
+const initCursorGlow = () => {
+    if (!cursorGlow) return;
+    // hide on touch devices
+    if ("ontouchstart" in window) return;
+
+    document.addEventListener("mousemove", (e) => {
+        cursorGlow.style.left = e.clientX + "px";
+        cursorGlow.style.top = e.clientY + "px";
+        if (!cursorGlow.classList.contains("active")) cursorGlow.classList.add("active");
+    });
+
+    document.addEventListener("mouseleave", () => {
+        cursorGlow.classList.remove("active");
+    });
+};
+
+/* ================================================================
+   RANDOM GLITCH EFFECT
+   ================================================================ */
+
+const glitchEl = document.querySelector(".glitch");
+let glitchInterval;
+
+const triggerGlitch = () => {
+    if (!glitchEl) return;
+    // Add intense glitch class
+    glitchEl.style.animationDuration = "0.1s";
+    glitchEl.classList.add("glitching");
+    setTimeout(() => {
+        glitchEl.style.animationDuration = "";
+        glitchEl.classList.remove("glitching");
+    }, 150 + Math.random() * 200);
+};
+
+const startRandomGlitch = () => {
+    const scheduleNext = () => {
+        const delay = 3000 + Math.random() * 8000;
+        glitchInterval = setTimeout(() => {
+            triggerGlitch();
+            // Occasionally double-glitch
+            if (Math.random() > 0.6) {
+                setTimeout(triggerGlitch, 200);
+            }
+            scheduleNext();
+        }, delay);
+    };
+    scheduleNext();
+};
+
+/* Also glitch the scanlines occasionally */
+const glitchScanlines = () => {
+    const scanlines = document.querySelector(".scanlines");
+    if (!scanlines) return;
+    setInterval(() => {
+        if (Math.random() > 0.85) {
+            scanlines.style.opacity = "0.3";
+            setTimeout(() => { scanlines.style.opacity = ""; }, 50 + Math.random() * 100);
+        }
+    }, 2000);
 };
 
 /* ================================================================
@@ -346,8 +503,10 @@ const boot = async () => {
 inputEl.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         const cmd = inputEl.value;
-        history.push(cmd);
-        histIdx = history.length;
+        if (cmd.trim()) {
+            history.push(cmd);
+            histIdx = history.length;
+        }
         runCommand(cmd);
         inputEl.value = "";
     }
@@ -365,21 +524,41 @@ inputEl.addEventListener("keydown", (e) => {
             inputEl.value = history[histIdx] || "";
         }
     }
+    // Tab completion
+    if (e.key === "Tab") {
+        e.preventDefault();
+        const partial = inputEl.value.trim().toLowerCase();
+        if (!partial) return;
+        const matches = Object.keys(commands).filter((c) => c.startsWith(partial));
+        if (matches.length === 1) inputEl.value = matches[0];
+    }
 });
 
+// Click terminal body to focus input
 bodyEl.addEventListener("click", () => inputEl.focus());
 
-/* clickable chips */
+// Clickable chips
 document.querySelectorAll(".chip").forEach((chip) => {
     chip.addEventListener("click", () => {
-        const cmd = chip.textContent.trim();
-        inputEl.value = cmd;
+        const cmd = chip.getAttribute("data-cmd") || chip.textContent.trim();
         runCommand(cmd);
         inputEl.value = "";
         inputEl.focus();
     });
 });
 
-/* go */
-boot();
-inputEl.focus();
+/* ================================================================
+   INIT
+   ================================================================ */
+
+const init = async () => {
+    drawPhoto();
+    typeHeroBanner();
+    initCursorGlow();
+    startRandomGlitch();
+    glitchScanlines();
+    await boot();
+    inputEl.focus();
+};
+
+init();
