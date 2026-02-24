@@ -181,11 +181,11 @@
             const imageData = ctx.createImageData(gW, gH);
             const data = imageData.data;
             for (let i = 0; i < data.length; i += 4) {
-                const v = Math.random() * 40;   /* dark noise, not white */
-                data[i] = v * 0.6;               /* slight green tint */
+                const v = Math.random() * 80;
+                data[i] = v * 0.4;
                 data[i + 1] = v;
-                data[i + 2] = v * 0.4;
-                data[i + 3] = Math.random() < 0.4 ? (Math.random() * 18) : 0; /* sparse, very low alpha */
+                data[i + 2] = v * 0.25;
+                data[i + 3] = Math.random() * 55;
             }
             ctx.putImageData(imageData, 0, 0);
             requestAnimationFrame(drawGrain);
