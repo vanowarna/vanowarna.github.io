@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Engineer Under Construction</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="theme-amber">
+    <div class="backdrop" aria-hidden="true">
+        <div class="glow"></div>
+        <div class="grid"></div>
+        <div class="orbit"></div>
+    </div>
+    <main class="layout">
+        <header class="hero">
+            <p class="eyebrow">System notice</p>
+            <h1>CV Engineer Under Construction.</h1>
+            <p class="subhead">Portfolio rebuild in progress. In the meantime, explore the terminal.</p>
+            <div class="divider" aria-hidden="true">----</div>
+        </header>
+
+        <section class="terminal" aria-label="Interactive terminal">
+            <div class="terminal-header">
+                <div class="dots" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="title">vanowarna@portfolio:~/maintenance</div>
+                <div class="status">LIVE</div>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="output" id="output"></div>
+                <div class="input-line">
+                    <span class="prompt">visitor@cv-engineer</span>
+                    <span class="prompt-symbol">$</span>
+                    <input id="command-input" class="input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+                    <span class="cursor" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="terminal-footer">
+                <span>Type</span>
+                <span class="chip">help</span>
+                <span class="chip">about</span>
+                <span class="chip">status</span>
+                <span class="chip">theme</span>
+            </div>
+        </section>
+    </main>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
