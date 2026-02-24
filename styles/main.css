@@ -18,10 +18,10 @@
 
 *,*::before,*::after{box-sizing:border-box}
 
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;height:100%}
 
 body{
-    margin:0;min-height:100vh;overflow-x:hidden;
+    margin:0;height:100%;overflow:hidden;
     font-family:"JetBrains Mono","Courier New",monospace;
     color:var(--ink);
     background:var(--bg);
@@ -94,8 +94,11 @@ body{
 .layout{
     position:relative;z-index:1;
     max-width:1020px;margin:0 auto;
-    padding:clamp(40px,8vw,72px) 20px 60px;
-    display:grid;gap:28px;
+    padding:clamp(24px,4vw,48px) 20px clamp(16px,2vw,32px);
+    display:grid;gap:20px;
+    height:100vh;
+    grid-template-rows:auto 1fr;
+    overflow:hidden;
 }
 
 /* ===== Hero ===== */
@@ -164,6 +167,8 @@ body{
     overflow:hidden;
     backdrop-filter:blur(4px);
     -webkit-backdrop-filter:blur(4px);
+    display:flex;flex-direction:column;
+    min-height:0;
 }
 
 .terminal-chrome{
@@ -204,7 +209,7 @@ body{
     padding:18px 16px 20px;
     font-size:clamp(.78rem,1.8vw,.9rem);
     color:var(--ink);
-    height:55vh;
+    flex:1;
     overflow-y:auto;
     display:flex;flex-direction:column;
     scrollbar-width:thin;
@@ -398,8 +403,8 @@ body{animation:crtFlicker 4s infinite}
 
 /* ===== Responsive ===== */
 @media(max-width:600px){
-    .layout{padding:32px 12px 48px;gap:20px}
-    .terminal-body{height:50vh;padding:14px 12px 16px}
+    .layout{padding:24px 12px 16px;gap:14px}
+    .terminal-body{padding:14px 12px 16px}
     .terminal-chrome{padding:10px 12px}
     .terminal-footer{padding:10px 12px 12px;gap:6px;overflow-x:auto;flex-wrap:nowrap}
     .chip{flex-shrink:0;padding:6px 14px;font-size:.72rem}
