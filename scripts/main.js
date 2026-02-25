@@ -64,7 +64,7 @@ const CV = {
         {
             title: "Sum Rate Maximization in STAR-RIS Assisted Full-Duplex Communication Systems",
             venue: "IEEE ICC 2022, Seoul",
-            link: "https://ieeexplore.ieee.org/document/9838965",
+            link: "https://ieeexplore.ieee.org/document/9838477",
             note: "Implemented convex optimization algorithms in MATLAB; developed simulation framework.",
             status: "Published",
         },
