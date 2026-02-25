@@ -294,21 +294,23 @@ const addLine = (text, cls, link) => {
 
 const scrollDown = () => { bodyEl.scrollTop = bodyEl.scrollHeight; };
 
-const renderResult = (result) => {
+const renderResult = async (result) => {
     if (!result) return;
     if (Array.isArray(result)) {
-        result.forEach((item) => {
+        for (const item of result) {
             if (typeof item === "string") addLine(item, "");
             else addLine(item.text, item.cls || "", item.link || null);
-        });
+            scrollDown();
+            await sleep(15); // Stream effect: 15ms delay per line
+        }
     } else if (typeof result === "string") {
         addLine(result, "");
+        scrollDown();
     }
-    scrollDown();
 };
 
 /* ---------- EXECUTE ---------- */
-const runCommand = (raw) => {
+const runCommand = async (raw) => {
     const trimmed = raw.trim();
     if (!trimmed) return;
     addLine("visitor@cv> " + trimmed, "command");
@@ -318,7 +320,7 @@ const runCommand = (raw) => {
         scrollDown();
         return;
     }
-    renderResult(handler());
+    await renderResult(handler());
 };
 
 /* ---------- BOOT SEQUENCE ---------- */
@@ -356,7 +358,40 @@ const boot = async () => {
     addLine("  All modules loaded. Terminal ready.", "sub");
     scrollDown();
 
-    await sleep(120);
+    await sleep(300);
+    /* Prank: password prompt */
+    addLine("  visitor@cv:~$ sudo access", "command");
+    scrollDown();
+    await sleep(200);
+    addLine("  [sudo] password for visitor: ", "dim");
+    scrollDown();
+
+    /* Create password input element */
+    const pwEl = document.createElement("div");
+    pwEl.className = "line dim";
+    pwEl.textContent = "  ";
+    outputEl.appendChild(pwEl);
+    scrollDown();
+
+    /* Simulate typing asterisks and "Just Kidding" */
+    await sleep(3500);
+    let pwText = "  ";
+    for (let i = 0; i < 12; i++) {
+        pwText += "•";
+        pwEl.textContent = pwText;
+        scrollDown();
+        await sleep(40);
+    }
+
+    await sleep(400);
+    pwEl.textContent = pwText + "  Just Kidding!";
+    scrollDown();
+
+    await sleep(1000);
+    pwEl.remove();
+
+    await sleep(200);
+    addLine("", "");
     const welcomeMsg = isMobile()
         ? "  Welcome. Tap a command below."
         : "  Welcome. Type 'help' or tap a command below.";
@@ -375,12 +410,12 @@ if (isMobile()) {
 }
 
 /* ---------- INPUT ---------- */
-inputEl.addEventListener("keydown", (e) => {
+inputEl.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
         const cmd = inputEl.value;
         history.push(cmd);
         histIdx = history.length;
-        runCommand(cmd);
+        await runCommand(cmd);
         inputEl.value = "";
     }
     if (e.key === "ArrowUp") {
@@ -404,10 +439,10 @@ bodyEl.addEventListener("click", () => inputEl.focus());
 
 /* Clickable chips */
 document.querySelectorAll(".chip").forEach((chip) => {
-    chip.addEventListener("click", () => {
+    chip.addEventListener("click", async () => {
         const cmd = chip.getAttribute("data-cmd");
         if (cmd) {
-            runCommand(cmd);
+            await runCommand(cmd);
             inputEl.value = "";
             inputEl.focus();
         }
