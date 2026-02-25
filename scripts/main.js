@@ -320,18 +320,24 @@ const renderResult = async (result, options = {}) => {
 const runCommand = async (raw) => {
     const trimmed = raw.trim();
     if (!trimmed) return;
-    addLine("visitor@cv> " + trimmed, "command");
+    
+    // Special handling for 'all' command
+    const isAllCommand = trimmed.toLowerCase() === "all";
+    
+    if (isAllCommand) {
+        // Clear terminal and scroll to top
+        outputEl.innerHTML = "";
+        bodyEl.scrollTop = 0; // Explicitly scroll to the very top
+        triggerGlitch(); // Trigger glitch effect
+    } else {
+        addLine("visitor@cv> " + trimmed, "command");
+    }
+    
     const handler = commands[trimmed.toLowerCase()];
     if (!handler) {
         addLine("  command not found: " + trimmed + " \u2014 type 'help'", "muted");
         scrollDown();
         return;
-    }
-    
-    // Special handling for 'all' command
-    const isAllCommand = trimmed.toLowerCase() === "all";
-    if (isAllCommand) {
-        triggerGlitch(); // Trigger glitch effect
     }
     
     await renderResult(handler(), { stream: !isAllCommand });
