@@ -294,15 +294,22 @@ const addLine = (text, cls, link) => {
 
 const scrollDown = () => { bodyEl.scrollTop = bodyEl.scrollHeight; };
 
-const renderResult = async (result) => {
+const renderResult = async (result, options = {}) => {
+    const { stream = true } = options;
     if (!result) return;
     if (Array.isArray(result)) {
         for (const item of result) {
             if (typeof item === "string") addLine(item, "");
             else addLine(item.text, item.cls || "", item.link || null);
-            scrollDown();
-            await sleep(15); // Stream effect: 15ms delay per line
+            if (stream) {
+                scrollDown();
+                await sleep(15); // Stream effect: 15ms delay per line
+            }
         }
+        if (stream) {
+            scrollDown();
+        }
+        // For 'all' command: don't scroll, just load everything at top
     } else if (typeof result === "string") {
         addLine(result, "");
         scrollDown();
@@ -320,7 +327,14 @@ const runCommand = async (raw) => {
         scrollDown();
         return;
     }
-    await renderResult(handler());
+    
+    // Special handling for 'all' command
+    const isAllCommand = trimmed.toLowerCase() === "all";
+    if (isAllCommand) {
+        triggerGlitch(); // Trigger glitch effect
+    }
+    
+    await renderResult(handler(), { stream: !isAllCommand });
 };
 
 /* ---------- BOOT SEQUENCE ---------- */
@@ -358,40 +372,7 @@ const boot = async () => {
     addLine("  All modules loaded. Terminal ready.", "sub");
     scrollDown();
 
-    await sleep(300);
-    /* Prank: password prompt */
-    addLine("  visitor@cv:~$ sudo access", "command");
-    scrollDown();
-    await sleep(200);
-    addLine("  [sudo] password for visitor: ", "dim");
-    scrollDown();
-
-    /* Create password input element */
-    const pwEl = document.createElement("div");
-    pwEl.className = "line dim";
-    pwEl.textContent = "  ";
-    outputEl.appendChild(pwEl);
-    scrollDown();
-
-    /* Simulate typing asterisks and "Just Kidding" */
-    await sleep(3500);
-    let pwText = "  ";
-    for (let i = 0; i < 12; i++) {
-        pwText += "•";
-        pwEl.textContent = pwText;
-        scrollDown();
-        await sleep(40);
-    }
-
-    await sleep(400);
-    pwEl.textContent = pwText + "  Just Kidding!";
-    scrollDown();
-
-    await sleep(1000);
-    pwEl.remove();
-
-    await sleep(200);
-    addLine("", "");
+    await sleep(120);
     const welcomeMsg = isMobile()
         ? "  Welcome. Tap a command below."
         : "  Welcome. Type 'help' or tap a command below.";
@@ -434,17 +415,25 @@ inputEl.addEventListener("keydown", async (e) => {
     }
 });
 
-/* Click anywhere in terminal body focuses input */
-bodyEl.addEventListener("click", () => inputEl.focus());
+/* Click anywhere in terminal body focuses input (except chips) */
+bodyEl.addEventListener("click", (e) => {
+    if (!e.target.closest(".chip")) {
+        inputEl.focus();
+    }
+});
 
 /* Clickable chips */
 document.querySelectorAll(".chip").forEach((chip) => {
-    chip.addEventListener("click", async () => {
+    chip.addEventListener("click", async (e) => {
+        e.stopPropagation(); // Prevent event bubbling to body
         const cmd = chip.getAttribute("data-cmd");
         if (cmd) {
             await runCommand(cmd);
             inputEl.value = "";
-            inputEl.focus();
+            // Only focus input if it's not the 'all' command
+            if (cmd.toLowerCase() !== "all") {
+                inputEl.focus();
+            }
         }
     });
 });
