@@ -155,7 +155,7 @@ const commands = {
         { text: "  skills      technical skills", cls: "" },
         { text: "  work        professional experience", cls: "" },
         { text: "  research    research projects", cls: "" },
-        { text: "  pubs        publications & preprints", cls: "" },
+        { text: "  publications  publications & preprints", cls: "" },
         { text: "  awards      honours & achievements", cls: "" },
         { text: "  leadership  service & leadership", cls: "" },
         { text: "  contact     email / LinkedIn / GitHub", cls: "" },
@@ -229,7 +229,7 @@ const commands = {
         return lines;
     },
 
-    pubs: () => {
+    publications: () => {
         const lines = [{ text: "  Publications & Preprints", cls: "heading" }, { text: "", cls: "" }];
         CV.publications.forEach((p) => {
             lines.push({ text: "  [" + p.status + "] " + p.title, cls: "sub" });
@@ -264,7 +264,7 @@ const commands = {
 
     all: () => {
         let lines = [];
-        ["about","interests","edu","skills","work","research","pubs","awards","leadership","contact"].forEach((cmd) => {
+        ["about","interests","edu","skills","work","research","publications","awards","leadership","contact"].forEach((cmd) => {
             lines = lines.concat(commands[cmd]());
             lines.push({ text: "  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500", cls: "dim" });
         });
