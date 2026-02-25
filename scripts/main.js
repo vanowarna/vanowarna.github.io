@@ -436,6 +436,27 @@ const triggerPageGlitch = () => {
 setTimeout(triggerGlitch, 800);
 setTimeout(triggerPageGlitch, 2000);
 
+/* ---------- Background Audio ---------- */
+const bgAudio = document.getElementById("bg-audio");
+if (bgAudio) {
+    bgAudio.volume = 0.3;
+    
+    /* Try autoplay */
+    const playPromise = bgAudio.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            /* Autoplay blocked - play on first user interaction */
+            const startAudio = () => {
+                bgAudio.play().catch(() => {});
+                document.removeEventListener("click", startAudio);
+                document.removeEventListener("keydown", startAudio);
+            };
+            document.addEventListener("click", startAudio);
+            document.addEventListener("keydown", startAudio);
+        });
+    }
+}
+
 /* ---------- GO ---------- */
 boot();
 inputEl.focus();
