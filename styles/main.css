@@ -182,6 +182,7 @@ body{
 .subtitle{
     color:var(--muted);font-size:clamp(.82rem,2vw,1rem);
     margin:0;letter-spacing:.04em;
+    text-shadow:0 0 8px rgba(51,255,51,.35),0 0 20px rgba(51,255,51,.15);
 }
 
 /* ===== Terminal ===== */
