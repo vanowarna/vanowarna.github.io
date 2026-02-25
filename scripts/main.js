@@ -439,7 +439,7 @@ setTimeout(triggerPageGlitch, 2000);
 /* ---------- Background Audio ---------- */
 const bgAudio = document.getElementById("bg-audio");
 if (bgAudio) {
-    bgAudio.volume = 0.3;
+    bgAudio.volume = 0.07;
     
     /* Try autoplay */
     const playPromise = bgAudio.play();
