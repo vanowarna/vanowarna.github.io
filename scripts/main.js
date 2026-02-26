@@ -466,24 +466,60 @@ const triggerPageGlitch = () => {
 setTimeout(triggerGlitch, 800);
 setTimeout(triggerPageGlitch, 2000);
 
-/* ---------- Background Audio ---------- */
+/* ---------- Background Audio (Enhanced) ---------- */
 const bgAudio = document.getElementById("bg-audio");
 if (bgAudio) {
-    bgAudio.volume = 0.09;
+    bgAudio.volume = 0.1;
     
-    /* Try autoplay */
-    const playPromise = bgAudio.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {
-            /* Autoplay blocked - play on first user interaction */
-            const startAudio = () => {
-                bgAudio.play().catch(() => {});
-                document.removeEventListener("click", startAudio);
-                document.removeEventListener("keydown", startAudio);
-            };
-            document.addEventListener("click", startAudio);
-            document.addEventListener("keydown", startAudio);
-        });
+    // Flag to track if audio has been started
+    let audioStarted = false;
+    
+    // Attempt to play when audio is ready
+    const attemptPlay = () => {
+        if (audioStarted || !bgAudio) return;
+        
+        const playPromise = bgAudio.play();
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    audioStarted = true;
+                })
+                .catch(() => {
+                    // Autoplay blocked or playback failed
+                    // Fall back to user interaction
+                    if (!audioStarted) {
+                        setupUserInteractionFallback();
+                    }
+                });
+        }
+    };
+    
+    // Setup fallback for user interaction
+    const setupUserInteractionFallback = () => {
+        const startAudio = () => {
+            bgAudio.play().catch(() => {});
+            audioStarted = true;
+            document.removeEventListener("click", startAudio);
+            document.removeEventListener("keydown", startAudio);
+        };
+        document.addEventListener("click", startAudio);
+        document.addEventListener("keydown", startAudio);
+    };
+    
+    // Wait for audio to be ready before attempting to play
+    if (bgAudio.readyState >= 2) {
+        // Audio metadata is loaded
+        attemptPlay();
+    } else {
+        // Wait for canplay event (enough data to play)
+        bgAudio.addEventListener("canplay", attemptPlay, { once: true });
+        
+        // Fallback: if audio doesn't load within 3 seconds, use interaction
+        setTimeout(() => {
+            if (!audioStarted) {
+                setupUserInteractionFallback();
+            }
+        }, 3000);
     }
 }
 
