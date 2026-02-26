@@ -432,6 +432,13 @@ bodyEl.addEventListener("click", (e) => {
 document.querySelectorAll(".chip").forEach((chip) => {
     chip.addEventListener("click", async (e) => {
         e.stopPropagation(); // Prevent event bubbling to body
+        
+        // Ensure audio starts on chip click
+        const audio = document.getElementById("bg-audio");
+        if (audio) {
+            audio.play().catch(() => {});
+        }
+        
         const cmd = chip.getAttribute("data-cmd");
         if (cmd) {
             await runCommand(cmd);
