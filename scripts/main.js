@@ -476,7 +476,7 @@ setTimeout(triggerPageGlitch, 2000);
 /* ---------- Background Audio (Enhanced) ---------- */
 const bgAudio = document.getElementById("bg-audio");
 if (bgAudio) {
-    bgAudio.volume = 0.1;
+    bgAudio.volume = 0.2;
     
     // Flag to track if audio has been started
     let audioStarted = false;
