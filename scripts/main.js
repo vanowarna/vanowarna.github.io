@@ -499,11 +499,20 @@ if (bgAudio) {
         const startAudio = () => {
             bgAudio.play().catch(() => {});
             audioStarted = true;
+            // Remove all interaction listeners once audio starts
             document.removeEventListener("click", startAudio);
             document.removeEventListener("keydown", startAudio);
+            document.removeEventListener("pointerdown", startAudio);
+            document.removeEventListener("scroll", startAudio);
+            document.removeEventListener("wheel", startAudio);
+            document.removeEventListener("touchmove", startAudio);
         };
         document.addEventListener("click", startAudio);
         document.addEventListener("keydown", startAudio);
+        document.addEventListener("pointerdown", startAudio);
+        document.addEventListener("scroll", startAudio);
+        document.addEventListener("wheel", startAudio);
+        document.addEventListener("touchmove", startAudio);
     };
     
     // Wait for audio to be ready before attempting to play
