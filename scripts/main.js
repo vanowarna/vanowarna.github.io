@@ -66,7 +66,7 @@ const CV = {
             venue: "MIPR 2026, Bangkok, Thailand",
             link: "#",
             note: "Two-stage framework (YOLO v11n-pose + CLIP ViT-B/32) achieving 51 FPS with 3.36\u00d7 speedup; deployed on live CCTV at Chulalongkorn University.",
-            status: "Preprint",
+            status: "Published",
         },
         {
             title: "Sum Rate Maximization in STAR-RIS Assisted Full-Duplex Communication Systems",
@@ -77,7 +77,7 @@ const CV = {
         },
         {
             title: "Damage Assessment after Natural Disasters with UAVs",
-            venue: "Manuscript in preparation",
+            venue: "⠀",
             link: "https://arxiv.org/pdf/2412.10756",
             note: "Led data preprocessing, model inferencing, and performance evaluation for onboard UAV deployment.",
             status: "Preprint",
