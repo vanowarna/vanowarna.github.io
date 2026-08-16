@@ -62,6 +62,13 @@ const CV = {
     ],
     publications: [
         {
+            title: "Real-Time Video Anomaly Detection Using YOLO Pose Estimation and CLIP-Based Semantic Scoring",
+            venue: "2026",
+            link: "#",
+            note: "Two-stage framework (YOLO v11n-pose + CLIP ViT-B/32) achieving 51 FPS with 3.36\u00d7 speedup; deployed on live CCTV at Chulalongkorn University.",
+            status: "Preprint",
+        },
+        {
             title: "Sum Rate Maximization in STAR-RIS Assisted Full-Duplex Communication Systems",
             venue: "IEEE ICC 2022, Seoul",
             link: "https://ieeexplore.ieee.org/document/9838477",
@@ -77,6 +84,17 @@ const CV = {
         },
     ],
     research: [
+        {
+            title: "Real-Time Video Anomaly Detection (YOLO + CLIP)",
+            period: "2026 (M.Eng. Research)",
+            supervisors: "Prof. Supavadee Aramvith",
+            bullets: [
+                "51 FPS end-to-end on NVIDIA Titan XP \u2014 3.36\u00d7 speedup over multi-feature baselines",
+                "AUROC: 89.26% (CUHK Avenue), 84.13% (CU Indoor), 70.26% (ShanghaiTech)",
+                "Zero-shot CLIP scoring replaces optical flow, AlphaPose & GMM/kNN density estimation",
+                "Deployed on live CCTV feeds at Chulalongkorn University",
+            ],
+        },
         {
             title: "Attention-based Semantic Communication for Video Conferencing",
             period: "2022 \u2013 2023 (Undergraduate Thesis)",
@@ -235,7 +253,9 @@ const commands = {
             lines.push({ text: "  [" + p.status + "] " + p.title, cls: "sub" });
             lines.push({ text: "    " + p.venue, cls: "dim" });
             lines.push({ text: "    " + p.note, cls: "" });
-            lines.push({ text: "    \u2192 " + p.link, cls: "dim", link: p.link });
+            if (p.link && p.link !== "#") {
+                lines.push({ text: "    \u2192 " + p.link, cls: "dim", link: p.link });
+            }
             lines.push({ text: "", cls: "" });
         });
         return lines;
