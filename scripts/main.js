@@ -64,7 +64,7 @@ const CV = {
         {
             title: "Real-Time Video Anomaly Detection Using YOLO Pose Estimation and CLIP-Based Semantic Scoring",
             venue: "MIPR 2026, Bangkok, Thailand",
-            link: "#",
+            link: "⠀",
             note: "Two-stage framework (YOLO v11n-pose + CLIP ViT-B/32) achieving 51 FPS with 3.36\u00d7 speedup; deployed on live CCTV at Chulalongkorn University.",
             status: "Published",
         },
