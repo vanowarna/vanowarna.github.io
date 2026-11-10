@@ -1,0 +1,9 @@
+/* 404 page: a single centred terminal message. */
+.not-found {
+    display: grid;
+    place-items: center;
+    overflow: auto;
+    padding: 24px;
+}
+.not-found main { display: grid; gap: 10px; }
+.not-found h1 { font-size: 1.1rem; }

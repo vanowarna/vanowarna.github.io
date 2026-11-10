@@ -2,156 +2,296 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://*.workers.dev; base-uri 'self'; form-action 'none'; object-src 'none'">
 
-    <!-- Primary Meta -->
-    <title>Vanodhya Warnasooriya - Engineer in Computer Vision, Generative AI &amp; Interactive Computing</title>
-    <meta name="description" content="Portfolio of Vanodhya Warnasooriya — M.Eng. candidate specialising in computer vision, vision-language models, generative AI, AR/VR, and edge-device optimisation.">
-    <meta name="keywords" content="Vanodhya Warnasooriya, vanowarna, computer vision, generative AI, vision language models, VLM, AR VR, edge computing, PyTorch, TensorFlow, OpenCV, CUDA, UAV disaster assessment, semantic communication, portfolio">
+    <!-- Primary meta -->
+    <title>Vanodhya Warnasooriya — Computer Vision, Generative AI &amp; Interactive Computing</title>
+    <meta name="description" content="Vanodhya Warnasooriya (vanowarna) — M.Eng. candidate at Chulalongkorn University working on computer vision, vision-language models, generative AI, AR/VR and edge-device optimisation. Publications, research, experience and contact.">
     <meta name="author" content="Vanodhya Warnasooriya">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://vanowarna.com/">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="src/vanodhya-warnasooriya%20favicon.png">
-    <link rel="apple-touch-icon" href="src/vanodhya-warnasooriya%20favicon.png">
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+    <meta name="theme-color" content="#030806">
+    <meta name="color-scheme" content="dark">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="profile">
     <meta property="og:title" content="Vanodhya Warnasooriya — Computer Vision Engineer">
     <meta property="og:description" content="Computer vision &amp; generative-AI engineer building robust real-time systems for human-AI collaboration, scene understanding, and edge deployment.">
     <meta property="og:url" content="https://vanowarna.com/">
     <meta property="og:site_name" content="Vanodhya Warnasooriya">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://vanowarna.com/src/vanodhya%20warnasooriya-graph-template.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Vanodhya Warnasooriya — Computer Vision Engineer Portfolio">
-
-    <!-- Twitter Card -->
+    <meta property="og:image" content="https://vanowarna.com/assets/og-image.jpg">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="640">
+    <meta property="og:image:alt" content="Vanodhya Warnasooriya — Computer Vision Engineer portfolio">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Vanodhya Warnasooriya — Computer Vision Engineer Portfolio">
+    <meta name="twitter:title" content="Vanodhya Warnasooriya — Computer Vision Engineer">
     <meta name="twitter:description" content="Vision, generative &amp; interactive computing — explore my CV through an interactive terminal.">
-    <meta name="twitter:image" content="https://vanowarna.com/src/vanodhya%20warnasooriya-graph-template.jpg">
-    <meta name="twitter:image:alt" content="Vanodhya Warnasooriya — Computer Vision Engineer Portfolio">
+    <meta name="twitter:image" content="https://vanowarna.com/assets/og-image.jpg">
+    <meta name="twitter:image:alt" content="Vanodhya Warnasooriya — Computer Vision Engineer portfolio">
 
-    <!-- Theme Color (browser chrome) -->
-    <meta name="theme-color" content="#030806">
-    <meta name="msapplication-TileColor" content="#030806">
-
-    <!-- JSON-LD Structured Data --->
-    <script type="application/ld+json">
+    <!-- Structured data (generated from content/cv.json by tools/build.mjs) -->
+    <!-- build:jsonld -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vanodhya Warnasooriya",
+  "alternateName": "vanowarna",
+  "url": "https://vanowarna.com/",
+  "email": "mailto:vanowarna@gmail.com",
+  "image": "https://vanowarna.com/assets/vanodhya-warnasooriya.jpg",
+  "jobTitle": "Computer Vision Engineer",
+  "description": "I build generative and interactive visual computing systems, uniting deep learning, computational imaging, and human-computer interaction. My work aims to create robust, real-time applications for human-AI collaboration and scene understanding, with a specialization in hardware-aware optimization for edge devices and bandwidth-constrained environments.",
+  "sameAs": [
+    "https://scholar.google.com/citations?user=Ne3ko0AAAAAJ&hl=en",
+    "https://github.com/vanowarna",
+    "https://www.linkedin.com/in/vanowarna"
+  ],
+  "alumniOf": [
     {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Vanodhya Warnasooriya",
-        "url": "https://vanowarna.com",
-        "email": "vanowarna@gmail.com",
-        "image": "https://vanowarna.com/src/vanodhya_2023.png",
-        "jobTitle": "Computer Vision Engineer / M.Eng. Candidate in Electrical Engineering",
-        "description": "Builds generative and interactive visual computing systems, uniting deep learning, computational imaging, and human-computer interaction.",
-        "sameAs": [
-            "https://www.linkedin.com/in/vanowarna",
-            "https://github.com/vanowarna",
-            "https://scholar.google.com/citations?user=Ne3ko0AAAAAJ&hl=en"
-        ],
-        "alumniOf": [
-            {"@type": "CollegeOrUniversity", "name": "Chulalongkorn University"},
-            {"@type": "CollegeOrUniversity", "name": "University of Peradeniya"}
-        ],
-        "knowsAbout": [
-            "Computer Vision",
-            "Vision-Language Models",
-            "Generative Models",
-            "AR/VR",
-            "Human-AI Interaction",
-            "Edge Computing",
-            "PyTorch",
-            "TensorFlow",
-            "OpenCV",
-            "CUDA",
-            "TensorRT"
-        ]
+      "@type": "CollegeOrUniversity",
+      "name": "Chulalongkorn University"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Peradeniya"
     }
-    </script>
+  ],
+  "knowsAbout": [
+    "Computer Vision",
+    "Vision–Language Models (VLMs)",
+    "Generative Models",
+    "AR/VR & Human–AI Interaction",
+    "Multimodal Learning on Edge/Embedded Devices",
+    "Python",
+    "C++",
+    "C",
+    "MATLAB",
+    "PyTorch",
+    "TensorFlow",
+    "OpenCV",
+    "CUDA",
+    "TensorRT",
+    "Git",
+    "Docker",
+    "Conda",
+    "Jetson (Nano",
+    "Orin)",
+    "Raspberry Pi",
+    "ESP32",
+    "KiCAD",
+    "Altium",
+    "SolidWorks",
+    "OpenGL"
+  ]
+}
+</script>
+<!-- /build:jsonld -->
 
-    <!-- Fonts -->
+    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles/main.css?v=20260225e">
+    <link rel="stylesheet" href="styles/main.css">
+    <script type="module" src="scripts/main.js"></script>
 </head>
 <body>
-    <!-- Background audio -->
-    <audio id="bg-audio" loop preload="auto">
-        <source src="src/soundtrack.mp3" type="audio/mpeg">
-    </audio>
+    <a class="skip-link" href="#terminal-body">Skip to CV</a>
 
-    <!-- Three.js particle background -->
-    <canvas id="particles-bg" aria-hidden="true"></canvas>
+    <audio id="bg-audio" loop preload="none" src="assets/soundtrack.mp3"></audio>
 
-    <!-- Film grain overlay -->
-    <canvas id="film-grain" aria-hidden="true"></canvas>
-
-    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
-
+    <!-- Decorative background: WebGL radar scene over a CSS backdrop -->
     <div class="backdrop" aria-hidden="true">
         <div class="glow"></div>
         <div class="grid"></div>
+        <canvas id="scene"></canvas>
         <div class="scanlines"></div>
-        <div class="noise"></div>
-        <div class="orbit"></div>
-        <div class="orbit orbit-2"></div>
         <div class="vignette"></div>
     </div>
-
-    <!-- Page-wide glitch overlay -->
-    <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
 
     <main class="layout">
         <header class="hero">
-            <p class="eyebrow glitch-sm" data-text="Vanodhya Warnasooriya">Vanodhya Warnasooriya</p>
-            <h1 class="glitch" data-text="VANOWARNA">VANOWARNA</h1>
-            <p class="subtitle subtitle-main glitch-sm" data-text="Computer Vision Engineer">Computer Vision Engineer</p>
-            <p class="subtitle subtitle-sub glitch-sm" data-text="Vision, Generative &amp; Interactive Computing">Vision, Generative &amp; Interactive Computing</p>
+            <h1>
+                <span class="eyebrow">Vanodhya Warnasooriya</span>
+                <span class="glitch" data-text="VANOWARNA">VANOWARNA</span>
+            </h1>
+            <p class="subtitle subtitle-main">Computer Vision Engineer</p>
+            <p class="subtitle subtitle-sub">Vision, Generative &amp; Interactive Computing</p>
+            <nav aria-label="Profiles">
+                <ul class="hero-links">
+<!-- build:hero-links -->
+<li><a href="mailto:vanowarna@gmail.com">Email</a></li>
+<li><a href="https://scholar.google.com/citations?user=Ne3ko0AAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+<li><a href="https://github.com/vanowarna" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/vanowarna" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+<!-- /build:hero-links -->
+                </ul>
+            </nav>
         </header>
 
-        <section class="terminal" aria-label="Interactive terminal">
+        <section class="terminal" aria-label="Interactive CV terminal">
             <div class="terminal-chrome">
                 <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-                <div class="terminal-title">vanowarna@portfolio:~/cv</div>
-                <div class="badge"><span class="badge-dot"></span>LIVE</div>
-            </div>
-            <div class="terminal-body" id="terminal-body">
-                <div class="output" id="output"></div>
-                <div class="input-line" id="input-line">
-                    <span class="prompt" aria-hidden="true">visitor@cv&gt;</span>
-                    <input id="command-input" class="input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command input" placeholder="type a command...">
-                    <span class="mobile-cursor" aria-hidden="true"></span>
+                <div class="terminal-title" aria-hidden="true">vanowarna@portfolio:~/cv</div>
+                <div class="toggles">
+                    <button type="button" class="toggle" id="sound-toggle" data-action="sound" aria-pressed="false">
+                        <span aria-hidden="true">♪</span> sound <span class="toggle-state">off</span>
+                    </button>
+                    <button type="button" class="toggle" id="fx-toggle" data-action="fx" aria-pressed="true">
+                        fx <span class="toggle-state">on</span>
+                    </button>
                 </div>
             </div>
-            <div class="terminal-footer" id="chip-bar">
-                <span class="chip" data-cmd="help">help</span>
-                <span class="chip" data-cmd="about">about</span>
-                <span class="chip" data-cmd="interests">interests</span>
-                <span class="chip" data-cmd="edu">edu</span>
-                <span class="chip" data-cmd="skills">skills</span>
-                <span class="chip" data-cmd="work">work</span>
-                <span class="chip" data-cmd="research">research</span>
-                <span class="chip" data-cmd="publications">publications</span>
-                <span class="chip" data-cmd="awards">awards</span>
-                <span class="chip" data-cmd="leadership">leadership</span>
-                <span class="chip" data-cmd="contact">contact</span>
-                <span class="chip" data-cmd="all">all</span>
-                <span class="chip chip--danger" data-cmd="clear">clear</span>
+
+            <div class="terminal-body" id="terminal-body" tabindex="-1">
+                <!-- Static copy of the CV for search engines and no-JS visitors.
+                     Generated from content/cv.json — edit that file, not this block. -->
+                <div class="output" id="output" role="log" aria-live="polite" aria-relevant="additions">
+<!-- build:static-cv -->
+<h2 class="line heading"><span class="text"><span>Vanodhya Warnasooriya</span></span></h2>
+<div class="line sub"><span class="text"><span>M.Eng. Candidate in Electrical Engineering — Vision, Generative &amp; Interactive Computing</span></span></div>
+<div class="line dim"><span class="text"><span>Alawwa, Sri Lanka</span></span></div>
+<div class="line blank"></div>
+<div class="line"><span class="text"><span>I build generative and interactive visual computing systems, uniting deep learning, computational imaging, and human-computer interaction. My work aims to create robust, real-time applications for human-AI collaboration and scene understanding, with a specialization in hardware-aware optimization for edge devices and bandwidth-constrained environments.</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Research Interests</span></span></h2>
+<div class="line blank"></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>Computer Vision</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>Vision–Language Models (VLMs)</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>Generative Models</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>AR/VR &amp; Human–AI Interaction</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>Multimodal Learning on Edge/Embedded Devices</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Education</span></span></h2>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>Chulalongkorn University — Thailand</span></span></h3>
+<div class="line ind-1"><span class="text"><span>M.Eng. in Electrical Engineering  ·  2026 – Present</span></span></div>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>University of Peradeniya — Sri Lanka</span></span></h3>
+<div class="line ind-1"><span class="text"><span>B.Sc. Eng. in Electrical &amp; Electronic Eng., Second Class Honours (Upper)  ·  2018 – 2023</span></span></div>
+<div class="line dim ind-1"><span class="text"><span>GPA 3.35/4.00 · Rank 141 / 32,075 in GCE A-Level Physical Science (2017)</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Technical Skills</span></span></h2>
+<div class="line blank"></div>
+<div class="line sub"><span class="text"><span>Programming</span></span></div>
+<div class="line ind-1"><span class="text"><span>Python, C++, C, MATLAB</span></span></div>
+<div class="line sub"><span class="text"><span>ML &amp; Vision</span></span></div>
+<div class="line ind-1"><span class="text"><span>PyTorch, TensorFlow, OpenCV, CUDA, TensorRT</span></span></div>
+<div class="line sub"><span class="text"><span>Tools &amp; Platforms</span></span></div>
+<div class="line ind-1"><span class="text"><span>Git, Docker, Conda, Jetson (Nano, Orin), Raspberry Pi, ESP32</span></span></div>
+<div class="line sub"><span class="text"><span>Design &amp; Graphics</span></span></div>
+<div class="line ind-1"><span class="text"><span>KiCAD, Altium, SolidWorks, OpenGL</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Professional Experience</span></span></h2>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>Electronic Engineer (R&amp;D)</span></span></h3>
+<div class="line ind-1"><span class="text"><span>Zone24x7 (Pvt.) Ltd.  ·  Jul 2025 – Jan 2026</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>On-device CV within Apple AVFoundation — real-time facial analysis &amp; orientation tracking</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Interactive HCI guidance systems for high-quality data capture on mobile</span></span></div>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>Co-Founder &amp; Lead Engineer</span></span></h3>
+<div class="line ind-1"><span class="text"><span>Resowave (Pvt.) Ltd.  ·  Feb 2025 – Present</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Real-time signal visualization with Python &amp; OpenGL</span></span></div>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>Electronic Engineer</span></span></h3>
+<div class="line ind-1"><span class="text"><span>Vega Innovations (Pvt.) Ltd.  ·  Jan 2024 – Feb 2025</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Lightweight anti-spoofing (RGB+Depth+IR) for edge facial recognition</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>LoRa smart-farm sensor network with LLM-optimized decision-making</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Research Experience</span></span></h2>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>Real-Time Video Anomaly Detection (YOLO + CLIP)</span></span></h3>
+<div class="line ind-1"><span class="text"><span>2026 (M.Eng. Research)</span></span></div>
+<div class="line dim ind-1"><span class="text"><span>Supervisor: Prof. Supavadee Aramvith</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>51 FPS end-to-end on NVIDIA Titan XP — 3.36× speedup over multi-feature baselines</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>AUROC: 89.26% (CUHK Avenue), 84.13% (CU Indoor), 70.26% (ShanghaiTech)</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Zero-shot CLIP scoring replaces optical flow, AlphaPose &amp; GMM/kNN density estimation</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Deployed on live CCTV feeds at Chulalongkorn University</span></span></div>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>Semantic Feature Extraction for UAV-based Disaster Assessment</span></span></h3>
+<div class="line ind-1"><span class="text"><span>2024</span></span></div>
+<div class="line dim ind-1"><span class="text"><span>Supervisors: Dr. T. Fernando, Dr. H. A. Suraweera, Prof. S. Sridharan, Prof. C. Fookes</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Up to 92% reduction in transmitted data with minimal accuracy loss</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>~13x lower transmission latency; ~70 GFLOPs on Jetson platforms</span></span></div>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>Attention-based Semantic Communication for Video Conferencing</span></span></h3>
+<div class="line ind-1"><span class="text"><span>2022 – 2023 (Undergraduate Thesis)</span></span></div>
+<div class="line dim ind-1"><span class="text"><span>Supervisors: Dr. Himal A. Suraweera, Prof. Maheshi B. Dissanayake</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>~80% bandwidth savings via gaze-based semantic communication</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Robust pipeline: Dlib + OpenCV for head pose/gaze estimation</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>GAN-based (GFPGAN) reconstruction — SSIM 0.81 over noisy channels</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Publications &amp; Preprints</span></span></h2>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>[Published] Real-Time Video Anomaly Detection Using YOLO Pose Estimation and CLIP-Based Semantic Scoring</span></span></h3>
+<div class="line ind-1"><span class="text"><span>MIPR 2026, Bangkok, Thailand</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Two-stage framework (YOLO v11n-pose + CLIP ViT-B/32) achieving 51 FPS with 3.36× speedup; deployed on live CCTV at Chulalongkorn University.</span></span></div>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>[Published] Sum Rate Maximization in STAR-RIS Assisted Full-Duplex Communication Systems</span></span></h3>
+<div class="line ind-1"><span class="text"><span>IEEE ICC 2022, Seoul</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Implemented convex optimization algorithms in MATLAB; developed simulation framework.</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">→</span><span class="text"><a class="terminal-link" href="https://ieeexplore.ieee.org/document/9838477" target="_blank" rel="noopener noreferrer">ieeexplore.ieee.org/document/9838477</a></span></div>
+<div class="line blank"></div>
+<h3 class="line sub has-marker"><span class="marker" aria-hidden="true">■</span><span class="text"><span>[Preprint] Damage Assessment after Natural Disasters with UAVs</span></span></h3>
+<div class="line ind-1"><span class="text"><span>arXiv:2412.10756</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">·</span><span class="text"><span>Led data preprocessing, model inferencing, and performance evaluation for onboard UAV deployment.</span></span></div>
+<div class="line ind-1 has-marker"><span class="marker" aria-hidden="true">→</span><span class="text"><a class="terminal-link" href="https://arxiv.org/abs/2412.10756" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2412.10756</a></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Awards &amp; Achievements</span></span></h2>
+<div class="line blank"></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">★</span><span class="text"><span>1st Place — Undergrad Thesis Project, IEEE Signal Processing Society (2023)</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">★</span><span class="text"><span>1st Place — IEEE Innovation Nation Sri Lanka, Central Province (2023)</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">★</span><span class="text"><span>2nd Runners-Up — Hack:AI Competition (50+ university teams, 2022)</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">★</span><span class="text"><span>Global Finalist — NASA EO Dashboard Hackathon (2021)</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">★</span><span class="text"><span>8th Place — Intl. Rover Design Challenge, Mars Society South Asia (2021)</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Leadership &amp; Service</span></span></h2>
+<div class="line blank"></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>Chairperson, IEEE Student Branch, University of Peradeniya (2022–2023)</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>Member, Advisory Board, SEDS Sri Lanka (2021–Present)</span></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">●</span><span class="text"><span>Mathematics Tutor &amp; Mentor, Sasnaka Sansada (2019–2021)</span></span></div>
+<div class="line blank"></div>
+<h2 class="line heading"><span class="text"><span>Contact</span></span></h2>
+<div class="line blank"></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">→</span><span class="text"><span>Email: </span><a class="terminal-link" href="mailto:vanowarna@gmail.com">vanowarna@gmail.com</a></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">→</span><span class="text"><span>Google Scholar: </span><a class="terminal-link" href="https://scholar.google.com/citations?user=Ne3ko0AAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">scholar.google.com/citations?user=Ne3ko0AAAAAJ&amp;hl=en</a></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">→</span><span class="text"><span>GitHub: </span><a class="terminal-link" href="https://github.com/vanowarna" target="_blank" rel="noopener noreferrer">github.com/vanowarna</a></span></div>
+<div class="line has-marker"><span class="marker" aria-hidden="true">→</span><span class="text"><span>LinkedIn: </span><a class="terminal-link" href="https://www.linkedin.com/in/vanowarna" target="_blank" rel="noopener noreferrer">linkedin.com/in/vanowarna</a></span></div>
+<!-- /build:static-cv -->
+                </div>
+                <div class="input-line">
+                    <label class="prompt" for="command-input">visitor@cv&gt;</label>
+                    <input id="command-input" class="input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="type a command or ask a question…">
+                </div>
+            </div>
+
+            <div class="terminal-footer" id="chip-bar" role="toolbar" aria-label="CV sections">
+<!-- build:chips -->
+<button type="button" class="chip chip--accent" data-cmd="ask">ask</button>
+<button type="button" class="chip" data-cmd="about">about</button>
+<button type="button" class="chip" data-cmd="interests">interests</button>
+<button type="button" class="chip" data-cmd="edu">edu</button>
+<button type="button" class="chip" data-cmd="skills">skills</button>
+<button type="button" class="chip" data-cmd="work">work</button>
+<button type="button" class="chip" data-cmd="research">research</button>
+<button type="button" class="chip" data-cmd="publications">publications</button>
+<button type="button" class="chip" data-cmd="awards">awards</button>
+<button type="button" class="chip" data-cmd="leadership">leadership</button>
+<button type="button" class="chip" data-cmd="contact">contact</button>
+<button type="button" class="chip" data-cmd="all">all</button>
+<button type="button" class="chip chip--danger" data-cmd="clear">clear</button>
+<!-- /build:chips -->
             </div>
         </section>
     </main>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="scripts/main.js?v=20260225d"></script>
-    <script src="scripts/bg-effects.js?v=20260225d"></script>
 </body>
 </html>
