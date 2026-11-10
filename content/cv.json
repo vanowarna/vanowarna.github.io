@@ -1,0 +1,198 @@
+{
+  "profile": {
+    "name": "Vanodhya Warnasooriya",
+    "handle": "VANOWARNA",
+    "role": "Computer Vision Engineer",
+    "tagline": "Vision, Generative & Interactive Computing",
+    "headline": "M.Eng. Candidate in Electrical Engineering — Vision, Generative & Interactive Computing",
+    "location": "Alawwa, Sri Lanka",
+    "email": "vanowarna@gmail.com",
+    "summary": "I build generative and interactive visual computing systems, uniting deep learning, computational imaging, and human-computer interaction. My work aims to create robust, real-time applications for human-AI collaboration and scene understanding, with a specialization in hardware-aware optimization for edge devices and bandwidth-constrained environments.",
+    "cv_pdf": "",
+    "links": [
+      { "label": "Google Scholar", "url": "https://scholar.google.com/citations?user=Ne3ko0AAAAAJ&hl=en" },
+      { "label": "GitHub", "url": "https://github.com/vanowarna" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/vanowarna" }
+    ]
+  },
+
+  "highlights": [
+    { "label": "now", "text": "M.Eng. research at Chulalongkorn University — real-time video anomaly detection (YOLO + CLIP), 51 FPS on live CCTV" },
+    { "label": "papers", "text": "MIPR 2026 · IEEE ICC 2022 · arXiv preprint on UAV disaster assessment" },
+    { "label": "industry", "text": "R&D engineer at Zone24x7 and Vega Innovations — on-device vision for mobile and edge hardware" },
+    { "label": "focus", "text": "Vision-language models, generative models, AR/VR, multimodal learning on edge devices" }
+  ],
+
+  "sections": [
+    {
+      "id": "interests",
+      "title": "Research Interests",
+      "hint": "research interests",
+      "items": [
+        "Computer Vision",
+        "Vision–Language Models (VLMs)",
+        "Generative Models",
+        "AR/VR & Human–AI Interaction",
+        "Multimodal Learning on Edge/Embedded Devices"
+      ]
+    },
+    {
+      "id": "edu",
+      "title": "Education",
+      "hint": "education history",
+      "aliases": ["education"],
+      "entries": [
+        {
+          "title": "Chulalongkorn University — Thailand",
+          "subtitle": "M.Eng. in Electrical Engineering",
+          "meta": "2026 – Present"
+        },
+        {
+          "title": "University of Peradeniya — Sri Lanka",
+          "subtitle": "B.Sc. Eng. in Electrical & Electronic Eng., Second Class Honours (Upper)",
+          "meta": "2018 – 2023",
+          "details": "GPA 3.35/4.00 · Rank 141 / 32,075 in GCE A-Level Physical Science (2017)"
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "Technical Skills",
+      "hint": "technical skills",
+      "groups": {
+        "Programming": "Python, C++, C, MATLAB",
+        "ML & Vision": "PyTorch, TensorFlow, OpenCV, CUDA, TensorRT",
+        "Tools & Platforms": "Git, Docker, Conda, Jetson (Nano, Orin), Raspberry Pi, ESP32",
+        "Design & Graphics": "KiCAD, Altium, SolidWorks, OpenGL"
+      }
+    },
+    {
+      "id": "work",
+      "title": "Professional Experience",
+      "hint": "professional experience",
+      "aliases": ["experience"],
+      "entries": [
+        {
+          "title": "Electronic Engineer (R&D)",
+          "subtitle": "Zone24x7 (Pvt.) Ltd.",
+          "meta": "Jul 2025 – Jan 2026",
+          "bullets": [
+            "On-device CV within Apple AVFoundation — real-time facial analysis & orientation tracking",
+            "Interactive HCI guidance systems for high-quality data capture on mobile"
+          ]
+        },
+        {
+          "title": "Co-Founder & Lead Engineer",
+          "subtitle": "Resowave (Pvt.) Ltd.",
+          "meta": "Feb 2025 – Present",
+          "bullets": ["Real-time signal visualization with Python & OpenGL"]
+        },
+        {
+          "title": "Electronic Engineer",
+          "subtitle": "Vega Innovations (Pvt.) Ltd.",
+          "meta": "Jan 2024 – Feb 2025",
+          "bullets": [
+            "Lightweight anti-spoofing (RGB+Depth+IR) for edge facial recognition",
+            "LoRa smart-farm sensor network with LLM-optimized decision-making"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Research Experience",
+      "hint": "research projects",
+      "aliases": ["projects"],
+      "entries": [
+        {
+          "title": "Real-Time Video Anomaly Detection (YOLO + CLIP)",
+          "meta": "2026 (M.Eng. Research)",
+          "details": "Supervisor: Prof. Supavadee Aramvith",
+          "bullets": [
+            "51 FPS end-to-end on NVIDIA Titan XP — 3.36× speedup over multi-feature baselines",
+            "AUROC: 89.26% (CUHK Avenue), 84.13% (CU Indoor), 70.26% (ShanghaiTech)",
+            "Zero-shot CLIP scoring replaces optical flow, AlphaPose & GMM/kNN density estimation",
+            "Deployed on live CCTV feeds at Chulalongkorn University"
+          ]
+        },
+        {
+          "title": "Semantic Feature Extraction for UAV-based Disaster Assessment",
+          "meta": "2024",
+          "details": "Supervisors: Dr. T. Fernando, Dr. H. A. Suraweera, Prof. S. Sridharan, Prof. C. Fookes",
+          "bullets": [
+            "Up to 92% reduction in transmitted data with minimal accuracy loss",
+            "~13x lower transmission latency; ~70 GFLOPs on Jetson platforms"
+          ]
+        },
+        {
+          "title": "Attention-based Semantic Communication for Video Conferencing",
+          "meta": "2022 – 2023 (Undergraduate Thesis)",
+          "details": "Supervisors: Dr. Himal A. Suraweera, Prof. Maheshi B. Dissanayake",
+          "bullets": [
+            "~80% bandwidth savings via gaze-based semantic communication",
+            "Robust pipeline: Dlib + OpenCV for head pose/gaze estimation",
+            "GAN-based (GFPGAN) reconstruction — SSIM 0.81 over noisy channels"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publications",
+      "title": "Publications & Preprints",
+      "hint": "publications & preprints",
+      "aliases": ["papers", "pubs"],
+      "entries": [
+        {
+          "tag": "Published",
+          "title": "Real-Time Video Anomaly Detection Using YOLO Pose Estimation and CLIP-Based Semantic Scoring",
+          "subtitle": "MIPR 2026, Bangkok, Thailand",
+          "bullets": [
+            "Two-stage framework (YOLO v11n-pose + CLIP ViT-B/32) achieving 51 FPS with 3.36× speedup; deployed on live CCTV at Chulalongkorn University."
+          ]
+        },
+        {
+          "tag": "Published",
+          "title": "Sum Rate Maximization in STAR-RIS Assisted Full-Duplex Communication Systems",
+          "subtitle": "IEEE ICC 2022, Seoul",
+          "bullets": ["Implemented convex optimization algorithms in MATLAB; developed simulation framework."],
+          "link": "https://ieeexplore.ieee.org/document/9838477"
+        },
+        {
+          "tag": "Preprint",
+          "title": "Damage Assessment after Natural Disasters with UAVs",
+          "subtitle": "arXiv:2412.10756",
+          "bullets": ["Led data preprocessing, model inferencing, and performance evaluation for onboard UAV deployment."],
+          "link": "https://arxiv.org/abs/2412.10756"
+        }
+      ]
+    },
+    {
+      "id": "awards",
+      "title": "Awards & Achievements",
+      "hint": "honours & achievements",
+      "marker": "★",
+      "items": [
+        "1st Place — Undergrad Thesis Project, IEEE Signal Processing Society (2023)",
+        "1st Place — IEEE Innovation Nation Sri Lanka, Central Province (2023)",
+        "2nd Runners-Up — Hack:AI Competition (50+ university teams, 2022)",
+        "Global Finalist — NASA EO Dashboard Hackathon (2021)",
+        "8th Place — Intl. Rover Design Challenge, Mars Society South Asia (2021)"
+      ]
+    },
+    {
+      "id": "leadership",
+      "title": "Leadership & Service",
+      "hint": "service & leadership",
+      "items": [
+        "Chairperson, IEEE Student Branch, University of Peradeniya (2022–2023)",
+        "Member, Advisory Board, SEDS Sri Lanka (2021–Present)",
+        "Mathematics Tutor & Mentor, Sasnaka Sansada (2019–2021)"
+      ]
+    }
+  ],
+
+  "assistant": {
+    "endpoint": "",
+    "max_question_length": 300
+  }
+}
