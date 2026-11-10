@@ -61,6 +61,7 @@ scripts/terminal.js  rendering and scrolling
 scripts/assistant.js "ask" feature (remote AI + offline fallback)
 scripts/audio.js     soundtrack toggle and loudness analyser
 scripts/scene.js     Three.js radar scene (loaded lazily)
+scripts/grain.js     film grain overlay
 scripts/prefs.js     saved preferences, reduced-motion detection
 tools/build.mjs      regenerates the static copy, JSON-LD and sitemap
 worker/              Cloudflare Worker for the AI assistant

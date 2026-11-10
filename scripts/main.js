@@ -11,6 +11,7 @@ import { buildCommands, helpLines, summaryLines, line, blank } from "./commands.
 import { Terminal } from "./terminal.js";
 import { createAssistant } from "./assistant.js";
 import { createSoundtrack } from "./audio.js";
+import { createGrain } from "./grain.js";
 import { getPref, setPref, prefersReducedMotion, isTouchDevice, isSmallScreen } from "./prefs.js";
 
 const CONTENT_URL = "content/cv.json";
@@ -37,12 +38,19 @@ const setToggle = (button, on) => {
 const soundtrack = createSoundtrack($("bg-audio"), (on) => setToggle(soundButton, on));
 
 let scene = null;
+let grain = null;
 let fxOn = getPref("fx", "on") === "on";
 
 const applyFx = () => {
     root.classList.toggle("fx-off", !fxOn);
     setToggle(fxButton, fxOn);
     if (scene) scene.setEnabled(fxOn);
+    if (grain) grain.setEnabled(fxOn);
+};
+
+const loadGrain = () => {
+    if (grain || !fxOn) return;
+    grain = createGrain($("film-grain"), { staticFrame: prefersReducedMotion() });
 };
 
 const loadScene = async (blipCount) => {
@@ -65,7 +73,10 @@ const setFx = (on, blipCount) => {
     fxOn = on;
     setPref("fx", on ? "on" : "off");
     applyFx();
-    if (on) loadScene(blipCount);
+    if (on) {
+        loadGrain();
+        loadScene(blipCount);
+    }
 };
 
 /* ---------- Cursor glow (pointer devices only) ---------- */
@@ -288,6 +299,7 @@ const start = (cv) => {
     fxButton.addEventListener("click", () => setFx(!fxOn, blipCount));
 
     applyFx();
+    loadGrain();
     startGlitch();
     trackViewport();
 

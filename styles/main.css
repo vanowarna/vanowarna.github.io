@@ -110,18 +110,16 @@ button {
     background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .6) 100%);
 }
 
-/* Film grain over the whole page. A single pre-rendered tile that is only
-   ever translated, so it stays on the compositor and costs no repaints. */
-.noise {
+/* Film grain over the whole page (drawn by scripts/grain.js at half resolution). */
+#film-grain {
     position: fixed;
-    inset: -8px;
+    inset: 0;
     z-index: 3;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
-    opacity: .5;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 1  0 0 0 0 .3  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 220px 220px;
-    animation: noise-shift .24s steps(4) infinite;
-    will-change: transform;
+    opacity: .45;
+    mix-blend-mode: screen;
 }
 
 .cursor-glow {
@@ -416,14 +414,6 @@ button {
 
 @keyframes pulse { from { opacity: .45; } to { opacity: 1; } }
 
-@keyframes noise-shift {
-    0% { transform: translate3d(0, 0, 0); }
-    25% { transform: translate3d(-5px, 3px, 0); }
-    50% { transform: translate3d(4px, -4px, 0); }
-    75% { transform: translate3d(-3px, -2px, 0); }
-    100% { transform: translate3d(2px, 5px, 0); }
-}
-
 @keyframes glitch-slice {
     0% { opacity: .8; clip-path: inset(20% 0 60% 0); }
     25% { opacity: .7; clip-path: inset(65% 0 8% 0); }
@@ -476,7 +466,7 @@ button {
 
 /* Visitor switched effects off. */
 .fx-off #scene,
-.fx-off .noise,
+.fx-off #film-grain,
 .fx-off .scanlines,
 .fx-off .cursor-glow { display: none; }
 
@@ -495,7 +485,7 @@ button {
 
 @media print {
     body { overflow: visible; height: auto; color: #000; background: #fff; }
-    .backdrop, .noise, .cursor-glow, .terminal-chrome, .terminal-footer, .input-line { display: none; }
+    .backdrop, #film-grain, .cursor-glow, .terminal-chrome, .terminal-footer, .input-line { display: none; }
     .layout { height: auto; display: block; }
     .terminal { border: 0; box-shadow: none; background: none; overflow: visible; }
     .terminal-body { overflow: visible; }
