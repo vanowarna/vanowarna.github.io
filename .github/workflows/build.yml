@@ -1,0 +1,43 @@
+# Keeps the static, crawlable copy of the CV in index.html in sync with
+# content/cv.json, so content can be edited from the GitHub web editor.
+name: Rebuild static CV
+
+on:
+  push:
+    branches: [main, under_maintenance]
+    paths:
+      - content/cv.json
+      - scripts/commands.js
+      - tools/build.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Regenerate index.html and sitemap.xml
+        run: node tools/build.mjs
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet; then
+            echo "Already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Rebuild static CV from content/cv.json"
+          git push
