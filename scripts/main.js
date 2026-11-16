@@ -291,7 +291,7 @@ const commands = {
         return lines;
     },
 
-    clear: () => { outputEl.innerHTML = ""; return null; },
+    clear: () => { outputEl.innerHTML = ""; unpin(); return null; },
 };
 
 /* ---------- RENDER ---------- */
@@ -310,9 +310,56 @@ const addLine = (text, cls, link) => {
         el.textContent = text;
     }
     outputEl.appendChild(el);
+    return el;
 };
 
 const scrollDown = () => { bodyEl.scrollTop = bodyEl.scrollHeight; };
+
+/* ---------- Pin a command to the top of the terminal ----------
+   Readers go top to bottom, so each command line is scrolled to the top
+   of the terminal and its output loads downward beneath it. A spacer
+   below the prompt makes room when the output is shorter than the
+   terminal; it shrinks as lines arrive, so long output has no gap. */
+const PIN_GAP = 8; // px left above the pinned line
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const scrollSpacer = document.createElement("div");
+scrollSpacer.setAttribute("aria-hidden", "true");
+scrollSpacer.style.flexShrink = "0"; // the terminal body is a flex column
+bodyEl.appendChild(scrollSpacer);
+
+let pinnedLine = null;
+
+/* Position of an element within the terminal's scrollable content. */
+const offsetInBody = (el) =>
+    el.getBoundingClientRect().top - bodyEl.getBoundingClientRect().top + bodyEl.scrollTop;
+
+const pinTarget = () => Math.max(0, offsetInBody(pinnedLine) - PIN_GAP);
+
+/* Size the spacer so the pinned line can reach the top, and no more. */
+const fitSpacer = () => {
+    if (!pinnedLine) {
+        scrollSpacer.style.height = "0px";
+        return;
+    }
+    const spacerHeight = scrollSpacer.offsetHeight;
+    const contentHeight = bodyEl.scrollHeight - spacerHeight;
+    const needed = pinTarget() + bodyEl.clientHeight - contentHeight;
+    scrollSpacer.style.height = Math.max(0, Math.ceil(needed)) + "px";
+};
+
+const pinToTop = (el) => {
+    pinnedLine = el;
+    fitSpacer();
+    bodyEl.scrollTo({ top: pinTarget(), behavior: reducedMotion.matches ? "auto" : "smooth" });
+};
+
+const unpin = () => {
+    pinnedLine = null;
+    fitSpacer();
+};
+
+window.addEventListener("resize", fitSpacer);
 
 const renderResult = async (result, options = {}) => {
     const { stream = true } = options;
@@ -321,18 +368,12 @@ const renderResult = async (result, options = {}) => {
         for (const item of result) {
             if (typeof item === "string") addLine(item, "");
             else addLine(item.text, item.cls || "", item.link || null);
-            if (stream) {
-                scrollDown();
-                await sleep(15); // Stream effect: 15ms delay per line
-            }
+            fitSpacer();
+            if (stream) await sleep(15); // Stream effect: 15ms delay per line
         }
-        if (stream) {
-            scrollDown();
-        }
-        // For 'all' command: don't scroll, just load everything at top
     } else if (typeof result === "string") {
         addLine(result, "");
-        scrollDown();
+        fitSpacer();
     }
 };
 
@@ -340,27 +381,34 @@ const renderResult = async (result, options = {}) => {
 const runCommand = async (raw) => {
     const trimmed = raw.trim();
     if (!trimmed) return;
-    
-    // Special handling for 'all' command
-    const isAllCommand = trimmed.toLowerCase() === "all";
-    
-    if (isAllCommand) {
-        // Clear terminal and scroll to top
+    const name = trimmed.toLowerCase();
+
+    // 'all' clears the terminal and prints the whole CV at once from the top.
+    if (name === "all") {
         outputEl.innerHTML = "";
-        bodyEl.scrollTop = 0; // Explicitly scroll to the very top
-        triggerGlitch(); // Trigger glitch effect
-    } else {
-        addLine("visitor@cv> " + trimmed, "command");
-    }
-    
-    const handler = commands[trimmed.toLowerCase()];
-    if (!handler) {
-        addLine("  command not found: " + trimmed + " \u2014 type 'help'", "muted");
-        scrollDown();
+        unpin();
+        bodyEl.scrollTop = 0;
+        flashGlitch();
+        await renderResult(commands.all(), { stream: false });
         return;
     }
-    
-    await renderResult(handler(), { stream: !isAllCommand });
+
+    // Every other command keeps earlier output, is pinned to the top,
+    // and its output loads downward beneath it.
+    const echo = addLine("visitor@cv> " + trimmed, "command");
+
+    const handler = commands[name];
+    if (!handler) {
+        addLine("  command not found: " + trimmed + " \u2014 type 'help'", "muted");
+        pinToTop(echo);
+        return;
+    }
+
+    const result = handler();
+    if (!result) return; // 'clear' has already emptied the terminal
+
+    pinToTop(echo);
+    await renderResult(result);
 };
 
 /* ---------- BOOT SEQUENCE ---------- */
@@ -444,7 +492,7 @@ inputEl.addEventListener("keydown", async (e) => {
 /* Click anywhere in terminal body focuses input (except chips) */
 bodyEl.addEventListener("click", (e) => {
     if (!e.target.closest(".chip")) {
-        inputEl.focus();
+        inputEl.focus({ preventScroll: true }); // keep the pinned view in place
     }
 });
 
@@ -465,7 +513,7 @@ document.querySelectorAll(".chip").forEach((chip) => {
             inputEl.value = "";
             // Only focus input if it's not the 'all' command
             if (cmd.toLowerCase() !== "all") {
-                inputEl.focus();
+                inputEl.focus({ preventScroll: true }); // keep the pinned view in place
             }
         }
     });
@@ -475,10 +523,16 @@ document.querySelectorAll(".chip").forEach((chip) => {
 const glitchEl = document.querySelector(".glitch");
 const pageGlitchEl = document.getElementById("page-glitch");
 
-const triggerGlitch = () => {
+/* One flash of the title glitch (also used by the 'all' command). */
+const flashGlitch = () => {
     if (!glitchEl) return;
     glitchEl.classList.add("glitch-active");
     setTimeout(() => glitchEl.classList.remove("glitch-active"), 150 + Math.random() * 250);
+};
+
+/* Background loop: started once, so repeated 'all' commands do not speed it up. */
+const triggerGlitch = () => {
+    flashGlitch();
     setTimeout(triggerGlitch, 1500 + Math.random() * 4000);
 };
 
